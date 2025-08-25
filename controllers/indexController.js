@@ -3,7 +3,8 @@
 
 indexGet = async (req, res) => {
   
-    res.render('index', {title: 'Made By Shu'})
+    // res.render('index', {title: 'Made By Shu'})
+    res.redirect('/webdev')
 }
 
 module.exports = {
