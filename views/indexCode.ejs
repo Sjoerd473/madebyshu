@@ -165,45 +165,115 @@
       <h2 class="section__header">Portfolio</h2>
       <div class="portfolio__container breakout">
         <template x-for="(slide,index) in slides" :key="index">
-        <div class="portfolio__slide"
-        x-show="current === index"
-        x-init="images(index)"
- 
-        x-ref="`slide${index}`"
-        >
-          <div class="portfolio__slide-text">
-            <h3 class="subsection__header" x-text="slide.title"></h3>
-            <blockquote :cite="slide.cite">
-              <p x-text="slide.quote"></p>
-            </blockquote>
-            <p class="cit">
-  <span x-text="slide.author"></span>
-  <cite x-text="slide.quoteAuthor"></cite>
-</p>
+          <div
+            class="portfolio__slide"
+            x-show="current === index"
+            x-init="images(index)"
+            x-transition:enter="slide-enter"
+            x-transition:enter-start="slide-enter-start"
+            x-transition:enter-end="slide-enter-end"
+            x-transition:leave="slide-leave"
+            x-transition:leave-start="slide-leave-start"
+            x-transition:leave-end="slide-leave-end"
+            x-ref="`slide${index}`"
+          >
+            <div class="portfolio__slide-text">
+              <h3 class="subsection__header" x-text="slide.title"></h3>
+              <blockquote :cite="slide.cite">
+                <p x-text="slide.quote"></p>
+              </blockquote>
+              <p class="cit">
+                <span x-text="slide.author"></span>
+                <cite x-text="slide.quoteAuthor"></cite>
+              </p>
 
-            <template x-for="text in slide.textBlocks" :key="text">
-              <p  class="slide__text" x-text="text"></p>
-            </template>
-          </div>
-          <div class="portfolio__slide-logo"><img :src="slide.logo" alt=""></div>
-          <div  class="portfolio__slide-images">
-          <template x-for="(img, i) in slide.images" :key="i">
-            <img
-             :src="img.src"
-              :alt="img.alt"
-               :style="`--delay: ${img.delay};
+              <template x-for="text in slide.textBlocks" :key="text">
+                <p class="slide__text" x-text="text"></p>
+              </template>
+            </div>
+            <div class="portfolio__slide-logo">
+              <img 
+              :src="slide.logo"
+               alt=""
+               :class="{ 'logo-animate': current === index }"
+
+               x-transition:enter="logo-enter"
+    x-transition:enter-start="logo-enter-start"
+    x-transition:enter-end="logo-enter-end"
+    x-transition:leave="logo-leave"
+    x-transition:leave-start="logo-leave-start"
+    x-transition:leave-end="logo-leave-end"
+ />
+            </div>
+            <div class="portfolio__slide-images">
+              <template x-for="(img, i) in slide.images" :key="i">
+                <img
+                  :src="img.src"
+                  :alt="img.alt"
+                  :style="`--delay: ${img.delay};
                 --billow: ${img.move};
-                 --opacity: ${img.opacity}`" 
-                 class="portfolio__slide-image" />
-
-          </template>
+                 --opacity: ${img.opacity}`"
+                  class="portfolio__slide-image"
+                />
+              </template>
+            </div>
           </div>
-        </div>
         </template>
       </div>
-       <button @click="prev">Prev</button>
-  <button @click="next">Next</button>
+      <div>
+        <div class="carousel__buttons">
+          <svg
+            @click="prev"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="white"
+            stroke-width="1px"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle r="6" cx="8" cy="8" />
 
+            <path
+              d="
+      M 10,11
+      L 5,8
+      L 10,5
+      
+    "
+            />
+          </svg>
+
+          <svg
+            @click="next"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="white"
+            stroke-width="1px"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle r="6" cx="8" cy="8" />
+
+            <path
+              d="
+      M 6,11
+      L 11,8
+      L 6,5
+      
+    "
+            />
+          </svg>
+        </div>
+        <div class="carousel__dots">
+          <template x-for="(slide, index) in slides" :key="index">
+            <button
+              class="dot"
+              :class="{ 'active': current === index }"
+              @click="current = index"
+            ></button>
+          </template>
+        </div>
+      </div>
     </section>
     <section id="aboutme" class="full-width aboutme">
       <h2 class="section__header">About Me</h2>
@@ -565,146 +635,138 @@
         },
       };
     }
-    function imageController(){
+    function imageController() {
       return {
         images: [
-        { src: 'bg-img2.jpg', alt: 'Image 1', delay:0, move: 0 , opacity :1},
-        { src: 'bg-img2.jpg', alt: 'Image 2', delay:0, move: 0 , opacity : 1 },
-        { src: 'bg-img2.jpg', alt: 'Image 3', delay:0, move: 0, opacity: 1  },
-        { src: 'bg-img2.jpg', alt: 'Image 4', delay:0, move: 0 , opacity: 1 }
-      ],
+          { src: "bg-img2.jpg", alt: "Image 1", delay: 0, move: 0, opacity: 1 },
+          { src: "bg-img2.jpg", alt: "Image 2", delay: 0, move: 0, opacity: 1 },
+          { src: "bg-img2.jpg", alt: "Image 3", delay: 0, move: 0, opacity: 1 },
+          { src: "bg-img2.jpg", alt: "Image 4", delay: 0, move: 0, opacity: 1 },
+        ],
 
-
-         flagStart(){
-          const baseDelay = 200
-          const baseOscillation = 4
-         for (let i = 0; i < this.images.length; i++) {
-          this.images[i].delay = baseDelay * i +'ms'
-          this.images[i].move = baseOscillation + i + 'px'
-          this.images[i].opacity = 1 - (i / 10)
-          
-         }
-        }
-      }
-
+        flagStart() {
+          const baseDelay = 200;
+          const baseOscillation = 4;
+          for (let i = 0; i < this.images.length; i++) {
+            this.images[i].delay = baseDelay * i + "ms";
+            this.images[i].move = baseOscillation + i + "px";
+            this.images[i].opacity = 1 - i / 10;
+          }
+        },
+      };
     }
 
-     function carousel() {
-    return {
-      current: 0,
-      slides: [{
-        title: 'Spazio Gaia',
-        cite: 'https://spaziogaia.it',
-        quote: '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, fugiat! Nobis quod quibusdam modi commodi?',
-        author: '—Qualcuno,',
-        quoteAuthor: 'Spazio Gaia',
-        textBlocks: [
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae velit in necessitatibus sunt tenetur modi nostrum, neque culpa omnis.',
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste iure ad beatae distinctio enim explicabo nam perferendis dolorum voluptates in.'
+    function carousel() {
+      return {
+        current: 0,
+        slides: [
+          {
+            title: "Spazio Gaia",
+            cite: "https://spaziogaia.it",
+            quote:
+              "  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, fugiat! Nobis quod quibusdam modi commodi?",
+            author: "—Qualcuno,",
+            quoteAuthor: "Spazio Gaia",
+            textBlocks: [
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae velit in necessitatibus sunt tenetur modi nostrum, neque culpa omnis.",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste iure ad beatae distinctio enim explicabo nam perferendis dolorum voluptates in.",
+            ],
+            logo: "./Logo/SpazioGaia_Logo_V04_Pittogramma_Colori.svg",
+            images: [
+              {
+                src: "../bg-img2.jpg",
+                alt: "Image 1",
+                delay: "0ms",
+                move: "10px",
+                opacity: "1",
+              },
+              {
+                src: "../bg-img2.jpg",
+                alt: "Image 2",
+                delay: "0ms",
+                move: "0px",
+                opacity: "1",
+              },
+              {
+                src: "../bg-img2.jpg",
+                alt: "Image 1",
+                delay: "0ms",
+                move: "0px",
+                opacity: "1",
+              },
+              {
+                src: "../bg-img2.jpg",
+                alt: "Image 2",
+                delay: "0ms",
+                move: "0px",
+                opacity: "1",
+              },
+            ],
+          },
+          {
+            title: "Spazio Boop",
+            cite: "https://spaziogaia.it",
+            quote:
+              "  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, fugiat! Nobis quod quibusdam modi commodi?",
+            author: "—Qualcuno,",
+            quoteAuthor: "Spazio Gaia",
+            textBlocks: [
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae velit in necessitatibus sunt tenetur modi nostrum, neque culpa omnis.",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste iure ad beatae distinctio enim explicabo nam perferendis dolorum voluptates in.",
+            ],
+            logo: "./Logo/SpazioGaia_Logo_V04_Pittogramma_Colori.svg",
+            images: [
+              {
+                src: "../bike.webp",
+                alt: "Image 1",
+                delay: "0ms",
+                move: "10px",
+                opacity: "1",
+              },
+              {
+                src: "../bg-img2.jpg",
+                alt: "Image 2",
+                delay: "0ms",
+                move: "0px",
+                opacity: "1",
+              },
+              {
+                src: "../bike.webp",
+                alt: "Image 1",
+                delay: "0ms",
+                move: "0px",
+                opacity: "1",
+              },
+              {
+                src: "../bg-img2.jpg",
+                alt: "Image 2",
+                delay: "0ms",
+                move: "0px",
+                opacity: "1",
+              },
+            ],
+          },
         ],
-        logo: './Logo/SpazioGaia_Logo_V04_Pittogramma_Colori.svg',
-         images: [
-          {
-            src: '../bg-img2.jpg',
-            alt: 'Image 1',
-            delay: '0ms',
-            move: '10px',
-            opacity: '1'
-          },
-          {
-            src: '../bg-img2.jpg',
-            alt: 'Image 2',
-            delay: '0ms',
-            move: '0px',
-            opacity: '1'
-          },
-          {
-            src: '../bg-img2.jpg',
-            alt: 'Image 1',
-            delay: '0ms',
-            move: '0px',
-            opacity: '1'
-          },
-          {
-            src: '../bg-img2.jpg',
-            alt: 'Image 2',
-            delay: '0ms',
-            move: '0px',
-            opacity: '1'
-          }
-          
-        ]
 
+        images(slideIndex) {
+          const slide = this.slides[slideIndex];
+          slide.images.forEach((img, i) => {
+            img.delay = `${i + 100}ms`;
+            img.move = `${4 + i}px`;
+            img.opacity = `${1 - i * 0.1}`;
+          });
+        },
 
-      },
-      {
-        title: 'Spazio Boop',
-        cite: 'https://spaziogaia.it',
-        quote: '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, fugiat! Nobis quod quibusdam modi commodi?',
-        author: '—Qualcuno,',
-        quoteAuthor: 'Spazio Gaia',
-        textBlocks: [
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae velit in necessitatibus sunt tenetur modi nostrum, neque culpa omnis.',
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste iure ad beatae distinctio enim explicabo nam perferendis dolorum voluptates in.'
-        ],
-        logo: './Logo/SpazioGaia_Logo_V04_Pittogramma_Colori.svg',
-         images: [
-          {
-            src: '../bike.webp',
-            alt: 'Image 1',
-            delay: '0ms',
-            move: '10px',
-            opacity: '1'
-          },
-          {
-            src: '../bg-img2.jpg',
-            alt: 'Image 2',
-            delay: '0ms',
-            move: '0px',
-            opacity: '1'
-          },
-          {
-            src: '../bike.webp',
-            alt: 'Image 1',
-            delay: '0ms',
-            move: '0px',
-            opacity: '1'
-          },
-          {
-            src: '../bg-img2.jpg',
-            alt: 'Image 2',
-            delay: '0ms',
-            move: '0px',
-            opacity: '1'
-          }
-          
-        ]
+        next() {
+          this.current = (this.current + 1) % this.slides.length;
+        },
 
-
-      }
-        
-        
-    ],
-
-      images(slideIndex){
-        const slide = this.slides[slideIndex];
-        slide.images.forEach((img, i) =>{
-          img.delay = `${i +100}ms`
-          img.move = `${4 +i}px`
-          img.opacity =`${1 - i * 0.1}`;
-        })
-      },
-
-      next() {
-        this.current = (this.current + 1) % this.slides.length;
-      },
-
-      prev() {
-        this.current = (this.current - 1 + this.slides.length) % this.slides.length;
-      }
-    };
-  }
-
+        prev() {
+          this.current =
+            (this.current - 1 + this.slides.length) % this.slides.length;
+        },
+      };
+    }
   </script>
 </html>
 
