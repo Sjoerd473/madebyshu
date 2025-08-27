@@ -73,4 +73,128 @@ x-data="lineConnector"
     }
   }));
 });
-  
+   <div class="portfolio__slide">
+            <div
+              x-data="{ openLeft: false }"
+              class="portfolio__item"
+              id="item1-left"
+              x-on:toggle-left.window="openLeft = !openLeft"
+            >
+              >
+              <div>
+                <img
+                  src="../logo/SpazioGaia_Logo_V04_Pittogramma_Colori.svg"
+                  alt=""
+                />
+                <q>Quote</q>
+                <h3
+                  class="subsection__header"
+                  x-on:click="$dispatch('toggle-right')"
+                >
+                  Spazio Gaia
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae, asperiores fugit? Veniam voluptatem labore eveniet
+                  rerum mollitia ullam commodi ea non maxime consectetur. Labore,
+                  tempora!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae, asperiores fugit? Veniam voluptatem labore eveniet
+                  rerum mollitia ullam commodi ea non maxime consectetur. Labore,
+                  tempora!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae, asperiores fugit? Veniam voluptatem labore eveniet
+                  rerum mollitia ullam commodi ea non maxime consectetur. Labore,
+                  tempora!
+                </p>
+              </div>
+              <div class="image" x-show="openLeft"></div>
+            </div>
+            <div
+              x-data="{ openRight: false }"
+              class="portfolio__item"
+              id="item1-right"
+              x-on:toggle-right.window="openRight = !openRight"
+            >
+              <div>
+                <img
+                  src="../logo/SpazioGaia_Logo_V04_Pittogramma_Colori.svg"
+                  alt=""
+                />
+                <q>Quote</q>
+                <h3
+                  class="subsection__header"
+                  x-on:click="$dispatch('toggle-left')"
+                >
+                  Spazio Gaia
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae, asperiores fugit? Veniam voluptatem labore eveniet
+                  rerum mollitia ullam commodi ea non maxime consectetur. Labore,
+                  tempora!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae, asperiores fugit? Veniam voluptatem labore eveniet
+                  rerum mollitia ullam commodi ea non maxime consectetur. Labore,
+                  tempora!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae, asperiores fugit? Veniam voluptatem labore eveniet
+                  rerum mollitia ullam commodi ea non maxime consectetur. Labore,
+                  tempora!
+                </p>
+              </div>
+              <div class="image" x-show="openRight"></div>
+            </div>
+          </div>
+
+          .portfolio {
+  background-color: var(--color-neutral-300);
+}
+
+.portfolio__slide {
+  display: flex;
+  justify-content: space-between;
+}
+
+.portfolio__item {
+  max-width: 40%;
+  display: grid;
+  > * {
+    grid-area: 1/1;
+  }
+  > .image {
+    width: 100%;
+    height: 100%;
+    background-image: url(../bg-img2.jpg);
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    > q {
+      display: block;
+      font-size: var(--size-300);
+      align-self: end;
+      border: 2px solid black;
+      padding: var(--size-300);
+    }
+
+    > img {
+      max-width: 50%;
+      margin-inline: auto;
+    }
+    > p {
+      font-size: var(--size-400);
+      margin-block: var(--size-300);
+    }
+  }
+}
+
+x-data="imageController()" x-init="flagStart()"
