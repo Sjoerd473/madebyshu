@@ -8,7 +8,7 @@
       <div class="hero__container | breakout">
         <div class="hero__images">
           <img class="logo" src="/logo/verdechiaro.svg" alt="" srcset="" />
-          <!-- <img class="me" src="fotodime.png" alt="" srcset="" /> -->
+          <!-- <img class="me" src="../Shu/portrait.png" alt="" srcset="" /> -->
         </div>
         <div class="hero__text">
           <div class="hero__text-container">
@@ -275,12 +275,27 @@
         </div>
       </div>
     </section>
-    <section id="aboutme" class="full-width aboutme">
+    <section id="aboutme" class="aboutme | full-width">
       <h2 class="section__header">About Me</h2>
-      <div class="aboutme__grid">
+      <div class="aboutme__flex | full-width">
         <div class="card">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="section__header">header</h3>
+          <div x-data="{ activeFace: 'front' }" class="cube__container">
+  <div class="cube">
+    <div
+      class="cube__face cube-face--front"
+      :class="{ 'visible': activeFace === 'front' }"
+    >
+      <img src="../logo/Alpine.js.svg" alt="Alpinejs logo">
+    </div>
+    <div
+      class="cube__face cube-face--back"
+      :class="{ 'visible': activeFace === 'back' }"
+    >
+      <img src="../logo/htmx.svg" alt="htmx logo">
+    </div>
+  </div>
+</div>
+          <h3 class="subsection__header">header</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
@@ -288,8 +303,8 @@
           </p>
         </div>
         <div class="card">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="section__header">header</h3>
+          <img src="../logo/nodejsStackedLight.svg" alt="The nodejs Logo" />
+          <h3 class="subsection__header">header</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
@@ -297,26 +312,16 @@
           </p>
         </div>
         <div class="card">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="section__header">header</h3>
+          <img src="../logo/wpwhite.svg" alt="The WordPress Logo" />
+          <h3 class="subsection__header">header</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
             inventore totam officiis, aperiam ut molestias esse.
           </p>
         </div>
-        <div class="aboutme__text">
-          <h3 class="section__header">Header</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi iure
-            repudiandae eveniet corporis eius explicabo cum beatae, eligendi
-            fugit iste error sunt nobis hic odio nulla perferendis
-            necessitatibus tempora illum officiis quae numquam magni. Labore.
-          </p>
-        </div>
-        <div class="card">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="section__header">header</h3>
+        <div class="aboutme__text card">
+          <h3 class="subsection__header">header4</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
@@ -324,8 +329,133 @@
           </p>
         </div>
       </div>
+      <!-- <div class="aboutme__text">
+          <h3 class="section__header">Header</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi iure
+            repudiandae eveniet corporis eius explicabo cum beatae, eligendi
+            fugit iste error sunt nobis hic odio nulla perferendis
+            necessitatibus tempora illum officiis quae numquam magni. Labore.
+          </p>
+        </div> -->
+<%- include('./partials/svgaboutme.ejs') %>
     </section>
-    <section id="faq" class="faq full-width">
+   
+    <section x-data="packageCarousel()" id="prezzi" class="prezzi full-width">
+     
+      <div class="prezzi__container | breakout">
+        <div class="prezzi__text">
+          <h2 class="section__header">Packages</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus provident quidem ut vero, voluptas suscipit ad alias rem magni beatae animi molestias neque at perspiciatis?</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quam perferendis cumque natus porro unde enim quis sit facilis blanditiis.</p>
+            <div class="prezzi__buttons">
+ <svg
+  @click="prev"
+  :style="current === 0 ? 'visibility: hidden' : 'visibility: visible'"
+  viewBox="0 0 16 16"
+  fill="none"
+  stroke="white"
+  stroke-width="1px"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle r="6" cx="8" cy="8" />
+  <path d="M 10,11 L 5,8 L 10,5" />
+</svg>
+
+
+<svg
+  @click="next"
+  :style="current === slides.length - 1 ? 'visibility: hidden' : 'visibility: visible'"
+  viewBox="0 0 16 16"
+  fill="none"
+  stroke="white"
+  stroke-width="1px"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle r="6" cx="8" cy="8" />
+  <path d="M 6,11 L 11,8 L 6,5" />
+</svg>
+
+
+        </div>
+        </div>
+
+        
+        <div class="prezzi__items ">
+          <template x-for="(slide,index) in slides" :key="index">
+            <div x-data="{ includesOpen: false, extrasOpen: false }" x-bind:data-open="includesOpen" 
+            class="prezzi__item"
+            :class="{ active: current === index }"
+            :style="getStyle(index, current)"
+                       >
+            <div x-html="slide.svg"></div>
+
+            <h3 class="subsection__header" x-text="slide.title"></h3>
+            <p x-text="slide.intro"></p>
+            <div class="prezzi__tab">
+              <h4 >Includes:</h4>
+              <svg @click="includesOpen = !includesOpen" width="50" height="25">
+              <polyline
+                points="0,0 20,20 40, 0"
+                 stroke-linecap="round"
+            stroke-linejoin="round"
+                stroke-width="4"
+                fill="none"
+              />
+            </svg>
+          </div>
+     
+            
+            <ul
+             x-show="includesOpen"
+              x-transition:enter="drop-enter"
+              x-transition:enter-start="drop-enter-start"
+              x-transition:enter-end="drop-enter-end"
+              x-transition:leave="drop-leave"
+              x-transition:leave-start="drop-leave-start"
+              x-transition:leave-end="drop-leave-end">
+              <template x-for="text in slide.items" :key="text">
+                <li x-text="text"> </li>
+              </template>
+            </ul>
+            <div class="prezzi__tab">
+<h4>Optional Extras</h4>
+ <svg @click="extrasOpen = !extrasOpen" width="50" height="25">
+              <polyline
+                points="0,0 20,20 40, 0"
+                stroke-linecap="round"
+            stroke-linejoin="round"
+                stroke-width="4"
+                fill="none"
+              />
+            </svg>
+
+            </div>
+            
+            <ul
+              x-show="extrasOpen"
+              x-transition:enter="drop-enter"
+              x-transition:enter-start="drop-enter-start"
+              x-transition:enter-end="drop-enter-end"
+              x-transition:leave="drop-leave"
+              x-transition:leave-start="drop-leave-start"
+              x-transition:leave-end="drop-leave-end">
+              <template x-for="text in slide.extras " :key="text">
+                <li x-text="text"></li>
+              </template>
+            </ul>
+            <p x-text="slide.price"></p>
+            </div> 
+
+          </template>
+        
+         
+        </div>
+      </div>
+    </section>
+     <section id="faq" class="faq full-width">
       <h2 class="section__header">F.A.Q</h2>
       <div class="faq__container">
         <div x-data="{open:false}" x-bind:data-open="open" class="faq__item">
@@ -455,124 +585,6 @@
               facilis magnam officiis eum assumenda repudiandae!
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-    <section id="prezzi" class="prezzi full-width">
-      <h2 class="section__header">Pacchetti</h2>
-      <div class="prezzi__container">
-        <div class="prezzi__item">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="subsection__header">Pacchetto Root/Radice</h3>
-          <p>
-            For non-profit organizations, community initiatives, and grassroots
-            movements that need a meaningful online presence without the
-            complexity.
-          </p>
-          <ul>
-            <li>
-              3–5 page website (Home, Mission, Projects, Get Involved, Contact)
-            </li>
-            <li>
-              Custom design reflecting the organization’s values and story
-            </li>
-            <li>
-              Donation button or integration with platforms like PayPal, Stripe,
-              or Ko-fi
-            </li>
-            <li>Volunteer or contact form</li>
-            <li>
-              Accessibility enhancements (contrast, alt text, readable fonts)
-            </li>
-            <li>Basic SEO setup and social media linking</li>
-            <li>1 hour of training or documentation for self-management</li>
-          </ul>
-          <p>Optional Extras</p>
-          <ul>
-            <li>Multilingual setup (Italian + English)</li>
-            <li>Blog or news section</li>
-            <li>Event calendar or petition form</li>
-          </ul>
-          <p>€350–€600</p>
-        </div>
-        <div class="prezzi__item">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="subsection__header">Pacchetto Seed/Foglia</h3>
-          <p>
-            For solopreneurs just starting out who need a simple, elegant online
-            presence. Ideal for: yoga instructors, artisans, eco-consultants, or
-            anyone launching their green venture.
-          </p>
-          <ul>
-            <li>1–3 page custom-designed website (Home, About, Contact)</li>
-            <li>Mobile-responsive layout</li>
-            <li>Personalized color palette and typography</li>
-            <li>Basic SEO setup (meta tags, alt text, page titles)</li>
-            <li>Contact form integration</li>
-            <li>1 round of revisions</li>
-          </ul>
-          <p>Optional Extras</p>
-          <ul>
-            <li>Multilingual setup (Italian + English)</li>
-            <li>Blog or news section</li>
-            <li>Event calendar or petition form</li>
-          </ul>
-          <p>€350–€600</p>
-        </div>
-        <div class="prezzi__item">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="subsection__header">Pacchetto Sprout/Ramo</h3>
-          <p>
-            For growing businesses ready to showcase their story and offerings
-            more fully. Ideal for: small shops, wellness studios, ethical
-            brands, or local service providers.
-          </p>
-          <ul>
-            <li>
-              4–6 page website (e.g., Home, About, Services, Testimonials, Blog,
-              Contact)
-            </li>
-            <li>Custom design with creative layout elements</li>
-            <li>Image optimization and accessibility enhancements</li>
-            <li>Newsletter signup or social media integration</li>
-            <li>Basic analytics setup (Google Analytics or Plausible)</li>
-            <li>2 rounds of revisions</li>
-          </ul>
-          <p>Optional Extras</p>
-          <ul>
-            <li>Multilingual setup (Italian + English)</li>
-            <li>Blog or news section</li>
-            <li>Event calendar or petition form</li>
-          </ul>
-          <p>€800–€1200</p>
-        </div>
-        <div class="prezzi__item">
-          <img src="../progresso 4.svg" alt="" />
-          <h3 class="subsection__header">Pacchetto Bloom/Albero</h3>
-          <p>
-            For established businesses wanting a truly unique, expressive online
-            experience. Ideal for: sustainable fashion brands, eco-tourism
-            providers, organic food producers, or anyone ready to scale with
-            style.
-          </p>
-          <ul>
-            <li>
-              Fully custom multi-page website with advanced layout and
-              animations
-            </li>
-            <li>Copywriting support or content guidance</li>
-            <li>Blog or portfolio integration</li>
-            <li>SEO-ready structure and performance tuning</li>
-            <li>Ongoing support for 1 month post-launch</li>
-            <li>3 rounds of revisions</li>
-          </ul>
-          <p>Optional Extras</p>
-          <ul>
-            <li>Multilingual setup (Italian + English)</li>
-            <li>Blog or news section</li>
-            <li>Event calendar or petition form</li>
-          </ul>
-          <p>€1.500–€2.500</p>
         </div>
       </div>
     </section>
@@ -751,7 +763,7 @@
         images(slideIndex) {
           const slide = this.slides[slideIndex];
           slide.images.forEach((img, i) => {
-            img.delay = `${i + 100}ms`;
+            img.delay = `${i * 100}ms`;
             img.move = `${4 + i}px`;
             img.opacity = `${1 - i * 0.1}`;
           });
@@ -767,6 +779,150 @@
         },
       };
     }
+
+  function packageCarousel(){
+    return{
+      current: 0,
+      slides:[{
+        svg: `<%- include('./partials/svgseed.ejs') %>`,
+        title: "Root",
+        intro: ` For non-profit organizations, community initiatives, and grassroots
+              movements that need a meaningful online presence without the
+              complexity.`,
+        items: ['3–5 page website (Home, Mission, Projects, Get Involved, Contact)',
+           `Custom design reflecting the organization’s values and story`,
+           ` Donation button or integration with platforms like PayPal, Stripe,
+                or Ko-fi`,
+                `Volunteer or contact form`,
+                `Accessibility enhancements (contrast, alt text, readable fonts)`,
+                `Basic SEO setup and social media linking`,
+                `1 hour of training or documentation for self-management`
+
+        ],
+        extras:[
+           `>Multilingual setup (Italian + English)`,
+        `Blog or news section`,
+              `Event calendar or petition form`
+        ],
+        price:`€350–€600`
+
+      },
+        {
+          svg: `<%- include('./partials/svgseed.ejs') %>`,
+       
+        title: "Seed",
+        intro: `  For solopreneurs just starting out who need a simple, elegant online
+              presence. Ideal for: yoga instructors, artisans, eco-consultants, or
+              anyone launching their green venture.`,
+        items: [ `1–3 page custom-designed website (Home, About, Contact)`,
+              `Mobile-responsive layout`,
+              `Personalized color palette and typography`,
+              `Basic SEO setup (meta tags, alt text, page titles)`,
+              `Contact form integration`,
+              `1 round of revisions`,
+
+        ],
+        extras:[
+           `>Multilingual setup (Italian + English)`,
+        `Blog or news section`,
+              `Event calendar or petition form`
+        ],
+        price:`€350–€600`
+
+      },
+      {
+        svg: `<%- include('./partials/svggrow.ejs') %>`,
+        
+        title: "Growth",
+        intro: `   For growing businesses ready to showcase their story and offerings
+              more fully. Ideal for: small shops, wellness studios, ethical
+              brands, or local service providers.`,
+        items: [ ` 4–6 page website (e.g., Home, About, Services, Testimonials, Blog,
+                Contact)`,
+              `Custom design with creative layout elements`,
+              `Image optimization and accessibility enhancements`,
+              `Newsletter signup or social media integration`,
+              `Basic analytics setup (Google Analytics or Plausible)`,
+              `2 rounds of revisions`,
+
+        ],
+        extras:[
+           `>Multilingual setup (Italian + English)`,
+        `Blog or news section`,
+              `Event calendar or petition form`
+        ],
+        price:`€800–€1200`
+
+      },
+      {
+        svg:`<%- include('./partials/svgflourish.ejs') %>`,
+        title: "Flourish",
+        intro: ` For established businesses wanting a truly unique, expressive online
+              experience. Ideal for: sustainable fashion brands, eco-tourism
+              providers, organic food producers, or anyone ready to scale with
+              style.`,
+        items: [ `
+                Fully custom multi-page website with advanced layout and
+                animations
+              `,
+              `Copywriting support or content guidance`,
+              `Blog or portfolio integration`,
+              `SEO-ready structure and performance tuning`,
+              `Ongoing support for 1 month post-launch`,
+              `3 rounds of revisions`
+        ],
+        extras:[
+           `>Multilingual setup (Italian + English)`,
+        `Blog or news section`,
+              `Event calendar or petition form`
+        ],
+        price:`€1.500–€2.500`
+
+      },
+        
+      ],
+       next() {
+          this.current = (this.current + 1) % this.slides.length;
+        },
+
+        prev() {
+          this.current =
+            (this.current - 1 + this.slides.length) % this.slides.length;
+        },
+        getStyle(index, current) {
+  const offset = index - current;
+
+   if (offset < 0) {
+    // Cards to the left (already passed)
+    return `pointer-events:none; 
+    transform: translateX(${offset * -1000}px) scale(${1 - offset * 0.12});
+     opacity: 0 ;
+     z-index: ${index + 1};
+     filter:blur(6px)`;
+  }
+
+  if (offset === 0) {
+    // Active card
+    return 'transform: translateX(0px) scale(1); opacity: 1;';
+  }
+
+  // Cards to the right
+  return `pointer-events:none;
+ 
+   transform: translate(${offset * 100}px, 0) scale(${1 - offset * 0.12});
+   --x:${offset * 100}px;
+   --s:${1 - offset * 0.12};
+   --delay: ${index * 100}ms;
+   --billow: ${index * 5}px;
+    opacity: ${1 - index * 0.1};
+     filter:blur(${index}px);
+      z-index: ${index * -1};
+      `;
+}
+    }
+  }
+
+
   </script>
 </html>
 
