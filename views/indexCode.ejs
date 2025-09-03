@@ -226,7 +226,216 @@
         </div>
       </div>
     </section>
-    <section x-data="carousel()" id="portfolio" class="full-width portfolio">
+    <section x-data="packageCarousel()" id="prezzi" class="prezzi full-width">
+      <div class="prezzi__container | breakout">
+        <div class="prezzi__text">
+          <h2 class="section__header">Packages</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+            provident quidem ut vero, voluptas suscipit ad alias rem magni
+            beatae animi molestias neque at perspiciatis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quam
+            perferendis cumque natus porro unde enim quis sit facilis
+            blanditiis.
+          </p>
+          <div class="prezzi__buttons">
+            <svg
+              class="prev"
+              @click="prev"
+              @mouseenter="boop($event.target)"
+              :style="current === 0 ? 'visibility: hidden' : 'visibility: visible'"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="white"
+              stroke-width="1px"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle r="6" cx="8" cy="8" />
+              <path d="M 10,11 L 5,8 L 10,5" />
+            </svg>
+
+            <svg
+              class="next"
+              @click="next"
+              @mouseenter="boop($event.target)"
+              :style="current === slides.length - 1 ? 'visibility: hidden' : 'visibility: visible'"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="white"
+              stroke-width="1px"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle r="6" cx="8" cy="8" />
+              <path d="M 6,11 L 11,8 L 6,5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="prezzi__items">
+          <template x-for="(slide,index) in slides" :key="index">
+            <div
+              x-data="{ includesOpen: false, extrasOpen: false }"
+              x-bind:data-open="includesOpen"
+              class="prezzi__item"
+              :class="{ active: current === index }"
+              :style="getStyle(index, current)"
+            >
+              <div
+              class="prezzi__svg"
+               x-html="slide.svg"></div>
+
+              <h3 class="subsection__header" x-text="slide.title"></h3>
+              <p x-text="slide.intro"></p>
+              <div
+                class="prezzi__tab"
+                @mouseenter="boop($event.target.querySelector('.faq__arrow'))"
+              >
+                <h4>Includes</h4>
+                <svg
+                  class="faq__arrow"
+                  @click="includesOpen = !includesOpen; rotatePrezzi($event.currentTarget)"
+                  width="50"
+                  height="25"
+                >
+                  <polyline
+                    points="0,0 20,20 40, 0"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+
+              <div
+                   x-show="includesOpen"
+                  x-transition:enter="drop-enter"
+                  x-transition:enter-start="drop-enter-start"
+                  x-transition:enter-end="drop-enter-end"
+                  x-transition:leave="drop-leave"
+                  x-transition:leave-start="drop-leave-start"
+                  x-transition:leave-end="drop-leave-end">
+                <ul
+             
+                >
+                  <template x-for="text in slide.items" :key="text">
+                    <li x-text="text"></li>
+                  </template>
+                </ul>
+                <p class="list-price">Estimated cost: <span x-text="slide.price"></span></p>
+              </div>
+              <div
+                class="prezzi__tab"
+                @mouseenter="boop($event.target.querySelector('.faq__arrow'))"
+              >
+                <h4>Optional Extras</h4>
+                <svg
+                  @click="extrasOpen = !extrasOpen; rotatePrezzi($event.currentTarget)"
+                  width="50"
+                  height="25"
+                  class="faq__arrow"
+                >
+                  <polyline
+                    points="0,0 20,20 40, 0"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+
+              
+                <ul
+                  x-show="extrasOpen"
+                  x-transition:enter="drop-enter"
+                  x-transition:enter-start="drop-enter-start"
+                  x-transition:enter-end="drop-enter-end"
+                  x-transition:leave="drop-leave"
+                  x-transition:leave-start="drop-leave-start"
+                  x-transition:leave-end="drop-leave-end"
+                >
+                  <template x-for="text in slide.extras " :key="text">
+                    <li x-text="text"></li>
+                  </template>
+                </ul>
+               
+             
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+    <section id="aboutme" class="aboutme | full-width">
+      <h2 class="section__header">About Me</h2>
+      <div class="aboutme__flex | full-width">
+        <div class="card">
+          <div x-data="{ activeFace: 'front' }" class="cube__container">
+            <div class="cube">
+              <div
+                class="cube__face cube-face--front"
+                :class="{ 'visible': activeFace === 'front' }"
+              >
+                <img src="../logo/Alpine.js.svg" alt="Alpinejs logo" />
+              </div>
+              <div
+                class="cube__face cube-face--back"
+                :class="{ 'visible': activeFace === 'back' }"
+              >
+                <img src="../logo/htmx.svg" alt="htmx logo" />
+              </div>
+            </div>
+          </div>
+          <h3 class="subsection__header">header</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
+            inventore totam officiis, aperiam ut molestias esse.
+          </p>
+        </div>
+        <div class="card">
+          <img src="../logo/nodejsStackedLight.svg" alt="The nodejs Logo" />
+          <h3 class="subsection__header">header</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
+            inventore totam officiis, aperiam ut molestias esse.
+          </p>
+        </div>
+        <div class="card">
+          <img src="../logo/wpwhite.svg" alt="The WordPress Logo" />
+          <h3 class="subsection__header">header</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
+            inventore totam officiis, aperiam ut molestias esse.
+          </p>
+        </div>
+        <div class="aboutme__text card">
+          <h3 class="subsection__header">header4</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
+            inventore totam officiis, aperiam ut molestias esse.
+          </p>
+        </div>
+      </div>
+      <!-- <div class="aboutme__text">
+          <h3 class="section__header">Header</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi iure
+            repudiandae eveniet corporis eius explicabo cum beatae, eligendi
+            fugit iste error sunt nobis hic odio nulla perferendis
+            necessitatibus tempora illum officiis quae numquam magni. Labore.
+          </p>
+        </div> -->
+      <%- include('./partials/svgaboutme.ejs') %>
+    </section>
+     <section x-data="carousel()" id="portfolio" class="full-width portfolio">
       <h2 class="section__header">Portfolio</h2>
       <div class="portfolio__container breakout">
         <template x-for="(slide,index) in slides" :key="index">
@@ -344,208 +553,8 @@
         </div>
       </div>
     </section>
-    <section id="aboutme" class="aboutme | full-width">
-      <h2 class="section__header">About Me</h2>
-      <div class="aboutme__flex | full-width">
-        <div class="card">
-          <div x-data="{ activeFace: 'front' }" class="cube__container">
-            <div class="cube">
-              <div
-                class="cube__face cube-face--front"
-                :class="{ 'visible': activeFace === 'front' }"
-              >
-                <img src="../logo/Alpine.js.svg" alt="Alpinejs logo" />
-              </div>
-              <div
-                class="cube__face cube-face--back"
-                :class="{ 'visible': activeFace === 'back' }"
-              >
-                <img src="../logo/htmx.svg" alt="htmx logo" />
-              </div>
-            </div>
-          </div>
-          <h3 class="subsection__header">header</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
-            inventore totam officiis, aperiam ut molestias esse.
-          </p>
-        </div>
-        <div class="card">
-          <img src="../logo/nodejsStackedLight.svg" alt="The nodejs Logo" />
-          <h3 class="subsection__header">header</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
-            inventore totam officiis, aperiam ut molestias esse.
-          </p>
-        </div>
-        <div class="card">
-          <img src="../logo/wpwhite.svg" alt="The WordPress Logo" />
-          <h3 class="subsection__header">header</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
-            inventore totam officiis, aperiam ut molestias esse.
-          </p>
-        </div>
-        <div class="aboutme__text card">
-          <h3 class="subsection__header">header4</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
-            inventore totam officiis, aperiam ut molestias esse.
-          </p>
-        </div>
-      </div>
-      <!-- <div class="aboutme__text">
-          <h3 class="section__header">Header</h3>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi iure
-            repudiandae eveniet corporis eius explicabo cum beatae, eligendi
-            fugit iste error sunt nobis hic odio nulla perferendis
-            necessitatibus tempora illum officiis quae numquam magni. Labore.
-          </p>
-        </div> -->
-      <%- include('./partials/svgaboutme.ejs') %>
-    </section>
 
-    <section x-data="packageCarousel()" id="prezzi" class="prezzi full-width">
-      <div class="prezzi__container | breakout">
-        <div class="prezzi__text">
-          <h2 class="section__header">Packages</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-            provident quidem ut vero, voluptas suscipit ad alias rem magni
-            beatae animi molestias neque at perspiciatis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quam
-            perferendis cumque natus porro unde enim quis sit facilis
-            blanditiis.
-          </p>
-          <div class="prezzi__buttons">
-            <svg
-              class="prev"
-              @click="prev"
-              @mouseenter="boop($event.target)"
-              :style="current === 0 ? 'visibility: hidden' : 'visibility: visible'"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="white"
-              stroke-width="1px"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle r="6" cx="8" cy="8" />
-              <path d="M 10,11 L 5,8 L 10,5" />
-            </svg>
-
-            <svg
-              class="next"
-              @click="next"
-              @mouseenter="boop($event.target)"
-              :style="current === slides.length - 1 ? 'visibility: hidden' : 'visibility: visible'"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="white"
-              stroke-width="1px"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle r="6" cx="8" cy="8" />
-              <path d="M 6,11 L 11,8 L 6,5" />
-            </svg>
-          </div>
-        </div>
-
-        <div class="prezzi__items">
-          <template x-for="(slide,index) in slides" :key="index">
-            <div
-              x-data="{ includesOpen: false, extrasOpen: false }"
-              x-bind:data-open="includesOpen"
-              class="prezzi__item"
-              :class="{ active: current === index }"
-              :style="getStyle(index, current)"
-            >
-              <div x-html="slide.svg"></div>
-
-              <h3 class="subsection__header" x-text="slide.title"></h3>
-              <p x-text="slide.intro"></p>
-              <div
-                class="prezzi__tab"
-                @mouseenter="boop($event.target.querySelector('.faq__arrow'))"
-              >
-                <h4>Includes:</h4>
-                <svg
-                  class="faq__arrow"
-                  @click="includesOpen = !includesOpen; rotatePrezzi($event.currentTarget)"
-                  width="50"
-                  height="25"
-                >
-                  <polyline
-                    points="0,0 20,20 40, 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="4"
-                    fill="none"
-                  />
-                </svg>
-              </div>
-
-              <ul
-                x-show="includesOpen"
-                x-transition:enter="drop-enter"
-                x-transition:enter-start="drop-enter-start"
-                x-transition:enter-end="drop-enter-end"
-                x-transition:leave="drop-leave"
-                x-transition:leave-start="drop-leave-start"
-                x-transition:leave-end="drop-leave-end"
-              >
-                <template x-for="text in slide.items" :key="text">
-                  <li x-text="text"></li>
-                </template>
-              </ul>
-              <div
-                class="prezzi__tab"
-                @mouseenter="boop($event.target.querySelector('.faq__arrow'))"
-              >
-                <h4>Optional Extras</h4>
-                <svg
-                  @click="extrasOpen = !extrasOpen; rotatePrezzi($event.currentTarget)"
-                  width="50"
-                  height="25"
-                  class="faq__arrow"
-                >
-                  <polyline
-                    points="0,0 20,20 40, 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="4"
-                    fill="none"
-                  />
-                </svg>
-              </div>
-
-              <ul
-                x-show="extrasOpen"
-                x-transition:enter="drop-enter"
-                x-transition:enter-start="drop-enter-start"
-                x-transition:enter-end="drop-enter-end"
-                x-transition:leave="drop-leave"
-                x-transition:leave-start="drop-leave-start"
-                x-transition:leave-end="drop-leave-end"
-              >
-                <template x-for="text in slide.extras " :key="text">
-                  <li x-text="text"></li>
-                </template>
-              </ul>
-              <p x-text="slide.price"></p>
-            </div>
-          </template>
-        </div>
-      </div>
-    </section>
+   
     <section id="faq" class="faq full-width">
       <div class="faq__svg-bg full-width">
         <svg
@@ -1247,13 +1256,14 @@
 
           if (offset === 0) {
             // Active card
-            return "transform: translateX(0px) scale(1); opacity: 1;";
+            return "transform: translateX(0px) scale(1); opacity: 1; background: var(--color-primary-900)";
           }
 
           // Cards to the right
           return `pointer-events:none;
  
    transform: translate(${offset * 100}px, 0) scale(${1 - offset * 0.12});
+   background: oklch(from var(--color-primary-900) calc(l + ${index} * 0.03) c h);
    --x:${offset * 100}px;
    --s:${1 - offset * 0.12};
    --delay: ${index * 100}ms;
