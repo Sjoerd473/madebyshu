@@ -198,3 +198,72 @@ x-data="lineConnector"
 }
 
 x-data="imageController()" x-init="flagStart()"
+
+
+const canvas = document.getElementById('circleCanvas');
+const ctx = canvas.getContext('2d');
+
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+
+const rows = 10;
+const pillsPerRow = 50;
+const baseRadius = 350;
+const radiusStep = 10;
+
+let mouseX = centerX;
+let mouseY = centerY;
+
+// Track mouse position
+document.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+});
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let row = 0; row < rows; row++) {
+    const radius = baseRadius + row * radiusStep;
+
+    for (let i = 0; i < pillsPerRow; i++) {
+      const angle = (2 * Math.PI / pillsPerRow) * i;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+
+      // Calculate angle to cursor
+      const dx = mouseX - x;
+      const dy = mouseY - y;
+      const rotation = Math.atan2(dy, dx);
+
+      const pillWidth = 40;
+      const pillHeight = 30;
+
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.fillStyle = `hsl(${( row * 20) * 10}, 70%, 60%)`;
+
+      // Draw pill (rounded rectangle)
+      ctx.beginPath();
+      ctx.moveTo(-pillWidth / 2 + pillHeight / 2, -pillHeight / 2);
+      ctx.lineTo(pillWidth / 2 - pillHeight / 2, -pillHeight / 2);
+      ctx.arcTo(pillWidth / 2, -pillHeight / 3, pillWidth / 2, pillHeight / 4, pillHeight / 3);
+      ctx.lineTo(pillWidth / 2, pillHeight / 2);
+      ctx.arcTo(pillWidth / 2, pillHeight / 2, pillWidth / 2 - pillHeight / 2, pillHeight / 2, pillHeight / 2);
+      ctx.lineTo(-pillWidth / 2 + pillHeight / 2, pillHeight / 2);
+      ctx.arcTo(-pillWidth / 2, pillHeight / 2, -pillWidth / 2, -pillHeight / 2, pillHeight / 2);
+      ctx.lineTo(-pillWidth / 2, -pillHeight / 2);
+      ctx.arcTo(-pillWidth / 2, -pillHeight / 2, -pillWidth / 2 + pillHeight / 2, -pillHeight / 2, pillHeight / 2);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.restore();
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+
+draw();

@@ -11,7 +11,9 @@
   --color-accent-400: oklch(46.164% 0.15883 317.443);
   --color-accent-800: oklch(28.136% 0.08759 317.149);
 
-  --hero-color: oklch(74.954% 0.10454 283.591);
+  --hero-color: oklch(0.23 0.08 277.35);
+  --end-color: oklch(0.23 0.08 277.35);
+ 
   /* --color-neutral-100: oklch(100% 0.00011 271.152 / var(--opacity, 1));
     --color-neutral-300: oklch(95.735% 0.02153 83.231 / var(--opacity, 1));
     --color-neutral-800: oklch(17.616% 0.01019 18.057 / var(--opacity, 1));
@@ -70,6 +72,9 @@
     0.9992 99.94%
   );
   --spring-duration: 0.8333s;
+
+  --boop-easing: linear(0, 0.0028 0.22%, 0.0136 0.48%, 0.0527 0.96%, 0.1214, 0.2133 2%, 0.4371 3.01%, 1.0485 5.4%, 1.2017 6.1%, 1.3151, 1.4057 7.32%, 1.4676, 1.5074 8.45%, 1.5198, 1.5259 9.06%, 1.5265 9.28%, 1.5233, 1.516, 1.5048 10.07%, 1.4715 10.59%, 1.4212 11.15%, 1.3052 12.16%, 0.9667 14.68%, 0.8917 15.34%, 0.8324, 0.7851 16.56%, 0.7528, 0.7323 17.69%, 0.7267 17.95%, 0.7232 18.26%, 0.7242 18.74%, 0.7335 19.26%, 0.7525, 0.7792 20.39%, 0.8406 21.39%, 1.016 23.88%, 1.0581 24.58%, 1.0892 25.19%, 1.1123, 1.1296, 1.1407, 1.1457 27.45%, 1.1454 27.93%, 1.1406 28.45%, 1.1309, 1.1169 29.59%, 1.0832 30.63%, 0.9909 33.12%, 0.9526 34.42%, 0.9405, 0.9315 35.56%, 0.9261 36.08%, 0.9233 36.65%, 0.925 37.52%, 0.9339 38.48%, 0.9509 39.56%, 0.9996 42.05%, 1.0193 43.22%, 1.0343 44.53%, 1.0384, 1.0403 45.84%, 1.0395 46.75%, 1.0347 47.71%, 1.0257 48.8%, 1 51.29%, 0.9897 52.46%, 0.9819 53.77%, 0.9788 55.03%, 0.9817 56.91%, 1.0053 61.66%, 1.0094, 1.0112 64.18%, 1.0096 66.14%, 0.9972 70.85%, 0.9941 73.33%, 0.995 75.38%, 1.0013 79.96%, 1.003 82.31%, 0.9984 91.55%, 1.0008 99.96%);
+--boop-duration: 2.142s;
 
   --size-100-rem: var(--size-100) rem;
   --size-200-rem: var(--size-200) rem;
@@ -358,6 +363,7 @@
 }
 
 .content-grid > .full-width,
+.full-width > .full-width:not(.hero__svg-bg, .faq__svg-bg, .bgtest),
 .aboutme > .full-width,
 .hero > .full-width:not(.hero__svg-bg),
 .prezzi > .full-width,
@@ -491,7 +497,11 @@ body {
 
 header {
   --thickness: 4px;
+  display:flex !important;
+  justify-content: space-evenly;
   height: 10vh;
+  margin-block-end: -10vh;
+  padding-inline:2em;
   position: sticky;
   top: 0;
   z-index: 2000;
@@ -579,16 +589,108 @@ nav {
   display: flex;
 
   margin-inline: auto;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   z-index: 3;
 
   a {
+    opacity: 0.5;
+    margin-inline:0.75em;
     text-decoration: none;
     color: var(--color-neutral-100);
-    font-family: var(--ff-primary);
+    font-family: var(--ff-secondary);
     font-size: var(--size-600);
+    transition: opacity 1000ms ease-out;
+
+    &:hover{
+      transition: none;
+      opacity: 1;;
+    }
   }
+}
+
+.header__logo{
+  position: relative;
+  z-index:2;
+  font-family: var(--ff-primary);
+  font-size: var(--size-500);
+
+  a{
+    text-decoration: none;
+  }
+}
+
+.header__icons{
+  display:flex;
+  justify-content: center;
+  gap:10%;
+  position: relative;
+  min-width: 10%;
+  z-index: 2;
+  overflow: clip;
+
+  svg{
+  
+    aspect-ratio: 1;
+    stroke:var(--color-neutral-100);
+    stroke-width: 3px;
+    fill:none;
+  }
+  
+}
+
+.changeTheme{
+  display:inline-grid;
+  place-content: center;
+  >svg{
+    grid-area:1/1;
+  }
+}
+.sun,.moon, .prev, .globe, .next, .dot, .faq__arrow{
+  transition: transform;
+  transition-timing-function:  var(--boop-easing, ease);
+  transition-duration: var(--boop-duration, 1s); ;
+}
+
+.sun{
+  --rotate:30deg;
+  --scale:1.05;
+}
+.moon{
+  --rotate: -20deg;
+  --scale:1.05;
+  
+}
+.globe{
+  --skewX:10deg;
+  /* --scale:1.05 */
+  --skewY:10deg;
+}
+.next{
+
+  --x:2px;
+}
+.prev{
+  --x: -2px;
+}
+.dot{
+   --scale:1.2;
+}
+.faq__arrow{
+  --y:5px;
+}
+
+.boop{
+  transform:
+  translate(var(--x, 0), var(--y, 0))
+  rotate(var(--rotate, 0))
+   scale(var(--scale, 1))
+    skew(var(--skewX, 0), var(--skewY, 0));
+}
+
+.rotate{
+  transform-origin: bottom left;
+  transform: rotate(90deg) translate(100%, 100%);
 }
 
 /* Hero */
@@ -612,28 +714,31 @@ nav {
 .hero__images {
   display: grid;
   place-content: center;
+  align-items: baseline;
   position: relative;
-  max-width: 60%;
-}
+  width:100%;
 
-.logo__container{
-  display:grid;
-  place-items: center;
->*{
-  grid-area: 1/1;
-}
-  >canvas{
-   
-    border:4px solid black;
+  >*{
+    grid-area: 1/1;
   }
 }
 
+
+
 .logo {
-  width: 100%;
+  /* justify-self: center;
+  align-self: start; */
+  /* width: 60%; */
+  scale:0.6;
+  /* margin-block-start:6rem; */
   /* position:absolute;
   top:0;
   left:-30%; */
-  scale: 1.5;
+  transform-origin: center;
+  pointer-events: none;
+   will-change: filter;
+
+  
   rotate: -15deg;
    filter: drop-shadow(5px 5px 0px var(--color-primary-800));
     transition: filter 0.1s ease-out;
@@ -650,16 +755,6 @@ nav {
     .three{
       font-size: 230px;
     }
-}
-.me {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  width: 100%;
-
-  background: var(--hero-color);
 }
 
 .hero__text {
@@ -781,11 +876,26 @@ nav {
     gap: var(--size-600);
     margin-block: var(--size-600);
     > div {
+      position: relative;
       flex: 1 1 30%;
       min-width: 250px;
+      padding-inline:0.5em;
+
+      >svg{
+        position: absolute;
+        right:0;
+        fill:white;
+
+      }
+    }
+
+    >div:not(div:last-of-type){
+      border-right:1px solid white;
     }
   }
 }
+
+
 .perche__grid {
   display: grid;
   grid-auto-columns: 1fr;
@@ -1304,7 +1414,8 @@ nav {
   background-color: var(--color-neutral-300);
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  /* transition: background-color 0.3s ease; */
+ 
 }
 
 .dot.active {
@@ -1541,10 +1652,11 @@ nav {
 
 
 .prezzi__tab {
-  width: 50%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap:30%;
   padding: var(--size-200);
   font-family: var(--ff-primary);
   font-size: var(--size-500);
@@ -1555,6 +1667,7 @@ nav {
 
   > svg {
     stroke: var(--color-neutral-100);
+    cursor: pointer;
   }
 }
 
@@ -1610,6 +1723,10 @@ nav {
     stroke: var(--color-neutral-100);
     max-width: 3rem;
   }
+}
+
+.rotatePrezzi{
+  transform: rotate(180deg);
 }
 
 /* Contatti e FAQ */
@@ -1729,7 +1846,7 @@ filter:drop-shadow(-5px -5px 50px oklch(from var(--color-primary-400) calc(l - 0
 }
 
 .faq {
-  background-color: oklch(from var(--hero-color) calc(l - 0.4) c h);
+  background-color: var(--end-color);
   overflow-y: clip;
 
    position: relative; 
