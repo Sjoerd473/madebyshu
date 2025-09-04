@@ -364,8 +364,14 @@
                   </template>
                 </ul>
                
-             
+               <button class="pushable">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front"> Acquisto </span>
+          
+        </button>
             </div>
+            
           </template>
         </div>
       </div>
@@ -373,24 +379,17 @@
     <section id="aboutme" class="aboutme | full-width">
       <h2 class="section__header">About Me</h2>
       <div class="aboutme__flex | full-width">
+         <div class="aboutme__text card">
+          <h3 class="subsection__header">Something</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
+            inventore totam officiis, aperiam ut molestias esse.
+          </p>
+        </div>
         <div class="card">
-          <div x-data="{ activeFace: 'front' }" class="cube__container">
-            <div class="cube">
-              <div
-                class="cube__face cube-face--front"
-                :class="{ 'visible': activeFace === 'front' }"
-              >
-                <img src="../logo/Alpine.js.svg" alt="Alpinejs logo" />
-              </div>
-              <div
-                class="cube__face cube-face--back"
-                :class="{ 'visible': activeFace === 'back' }"
-              >
-                <img src="../logo/htmx.svg" alt="htmx logo" />
-              </div>
-            </div>
-          </div>
-          <h3 class="subsection__header">header</h3>
+         <img src="../logo/alpinehtmx.svg" alt="The alpinejs and HTMX logo together">
+          <h3 class="subsection__header">Alpinejs + HTMX</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
@@ -399,7 +398,7 @@
         </div>
         <div class="card">
           <img src="../logo/nodejsStackedLight.svg" alt="The nodejs Logo" />
-          <h3 class="subsection__header">header</h3>
+          <h3 class="subsection__header">Nodejs</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
@@ -408,21 +407,14 @@
         </div>
         <div class="card">
           <img src="../logo/wpwhite.svg" alt="The WordPress Logo" />
-          <h3 class="subsection__header">header</h3>
+          <h3 class="subsection__header">Wordpress</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
             inventore totam officiis, aperiam ut molestias esse.
           </p>
         </div>
-        <div class="aboutme__text card">
-          <h3 class="subsection__header">header4</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consequuntur sit ipsa officia hic illo cum optio magnam excepturi,
-            inventore totam officiis, aperiam ut molestias esse.
-          </p>
-        </div>
+       
       </div>
       <!-- <div class="aboutme__text">
           <h3 class="section__header">Header</h3>
@@ -694,7 +686,7 @@
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front"> Contact me! </span>
-          <!-- <span id="pulse" class="pulse"></span> -->
+         
         </button>
         <div class="faq__container">
           <div x-data="{open:false}" x-bind:data-open="open" class="faq__item">

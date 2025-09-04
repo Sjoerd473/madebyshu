@@ -267,3 +267,20 @@ function draw() {
 }
 
 draw();
+
+ <div x-data="{ activeFace: 'front' }" class="cube__container">
+            <div class="cube">
+              <div
+                class="cube__face cube-face--front"
+                :class="{ 'visible': activeFace === 'front' }"
+              >
+                <img src="../logo/Alpine.js.svg" alt="Alpinejs logo" />
+              </div>
+              <div
+                class="cube__face cube-face--back"
+                :class="{ 'visible': activeFace === 'back' }"
+              >
+                <img src="../logo/htmx.svg" alt="htmx logo" />
+              </div>
+            </div>
+          </div>

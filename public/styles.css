@@ -970,6 +970,8 @@ nav {
 
   > svg {
     max-width: 50%;
+    stroke:var(--color-neutral-100);
+    fill:none;
   }
 
   .acorn {
@@ -997,7 +999,11 @@ nav {
  
 }
 
-.nut {
+  .mound, .hat {
+    fill: var(--color-primary-900);
+  }
+
+/* .nut {
     fill: burlywood;
   }
 
@@ -1021,12 +1027,10 @@ nav {
     fill: green;
   }
 
-  .mound {
-    fill: burlywood;
-  }
+
   /* .mound__lines {
     stroke: brown;
-  } */
+  } 
 
    .leaf {
     fill: green;
@@ -1058,9 +1062,11 @@ nav {
   }
   .trunk {
     fill: white;
-  }
+  } */
 
 .grow {
+  stroke:var(--color-neutral-100);
+  fill:none;
   --y: 29px;
 
   .leaf {
@@ -1073,6 +1079,8 @@ nav {
 
 .flourish {
   --y: 0;
+  stroke:var(--color-neutral-100);
+    fill:none;
 
   .tiny-leaf {
     transform: scale(0);
@@ -1083,6 +1091,8 @@ nav {
   overflow: clip;
   svg{
     width:125px;
+     stroke:var(--color-neutral-100);
+    fill:none;
   }
   .grow{
     transform: translateY(31%);
@@ -1546,15 +1556,20 @@ nav {
 .aboutme__svg {
   position: absolute;
   left: 0;
-  width: 100%;
+  bottom:0;
+  width: 30%;
   max-width: 500px;
+ 
 }
+
+
 
 .aboutme__flex {
   display: flex !important;
   flex-wrap: wrap;
   max-width: 60%;
   justify-self: end;
+  margin-inline-end: var(--size-400);
   > div {
     display: grid;
     place-items: center;
@@ -1562,30 +1577,40 @@ nav {
     min-width: 250px;
     > img {
       max-width: 170px;
+      max-height:100px;
     }
-    > img + img {
-      max-width: 135px;
-    }
+  
   }
 }
 
 .aboutme__text {
+  min-width: 90% !important;
+
+  border-bottom:5px solid white;
+
+
   > p {
     font-size: var(--size-400);
+    
   }
 }
 
 .card {
   padding: 1em;
   margin: 1em;
-  background-color: oklch(from var(--color-neutral-100) l c h / 0.1);
+  /* border:1px solid var(--color-neutral-100); */
 
-  /* border: 10px solid oklch(from var(--color-primary-400) calc(l + 0.11) c h); */
-  border-radius: 10px;
+
+
+  /* border-radius: 10px; */
 
   > p {
     font-size: var(--size-400);
   }
+}
+
+.card:not(.aboutme__text, .card:last-child){
+  border-right:5px solid white;
 }
 
 .cube__container {
@@ -1652,6 +1677,10 @@ nav {
 }
 
 .prezzi__items {
+    --border-radius: 20px;
+  --button-font-size: var(--size-300);
+  --button-width: 100px;
+  --button-height: 50px;
   position: relative;
   display: flex;
   align-items: center;
@@ -1663,10 +1692,7 @@ nav {
   perspective: 1000px;
 }
 
-*{
-  fill:none !important;
-  stroke: white !important;
-}
+
 
 .prezzi__item {
 
@@ -1710,6 +1736,14 @@ nav {
 
   > img {
     max-width: 50px;
+  }
+
+  >button{
+    filter:grayscale(100%);
+    transition: filter 900ms ease-out;
+    &:hover{
+      filter:grayscale(0%);
+    }
   }
 }
 
@@ -1909,9 +1943,7 @@ filter:drop-shadow(-5px -5px 50px oklch(from var(--color-primary-400) calc(l - 0
   align-items: center;
   justify-content: space-between;
    min-height: 100vh;
-   >*{
-    visibility: hidden;
-   }
+ 
   
 >button{
   max-width:25%;
