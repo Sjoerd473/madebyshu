@@ -1,7 +1,7 @@
 <header x-data class="full-width">
   <div class="header__logo">
     <a href="#hero"
-      >Made By Shu <span id="header__span">Web Development</span></a
+      >Made By Shu <br/> <span id="header__span">Web Development</span></a
     >
   </div>
   <nav class="breakout">
@@ -20,7 +20,7 @@
         width="1.75rem"
         height="1.75rem"
         viewBox="0 0 58.18 58.18"
-        @mouseenter="boop($event.target)"
+         @mouseenter.throttle.1500ms="boop($event.target)"
         class="sun"
       >
         <g>
@@ -48,7 +48,7 @@
         height="1.75rem"
         viewBox="-1 1 54.86 54.23"
         class="moon rotate"
-        @mouseenter="boop($event.target)"
+         @mouseenter.throttle.1500ms="boop($event.target)"
       >
         <g>
           <path
@@ -66,7 +66,7 @@
         width="1.75rem"
         height="1.75rem"
         viewBox="0 0 58.52 60.28"
-        @mouseenter="boop($event.target)"
+         @mouseenter.throttle.1500ms="boop($event.target)"
       >
         <defs>
           <style>

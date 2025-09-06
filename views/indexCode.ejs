@@ -227,6 +227,8 @@
       </div>
     </section>
     <section x-data="packageCarousel()" id="prezzi" class="prezzi full-width">
+  <%- include('./partials/modalform.ejs') %>
+
       <div class="prezzi__container | breakout">
         <div class="prezzi__text">
           <h2 class="section__header">Packages</h2>
@@ -244,7 +246,7 @@
             <svg
               class="prev"
               @click="prev"
-              @mouseenter="boop($event.target)"
+               @mouseenter.throttle.1500ms="boop($event.target)"
               :style="current === 0 ? 'visibility: hidden' : 'visibility: visible'"
               viewBox="0 0 16 16"
               fill="none"
@@ -260,7 +262,7 @@
             <svg
               class="next"
               @click="next"
-              @mouseenter="boop($event.target)"
+               @mouseenter.throttle.1500ms="boop($event.target)"
               :style="current === slides.length - 1 ? 'visibility: hidden' : 'visibility: visible'"
               viewBox="0 0 16 16"
               fill="none"
@@ -292,7 +294,7 @@
               <p x-text="slide.intro"></p>
               <div
                 class="prezzi__tab"
-                @mouseenter="boop($event.target.querySelector('.faq__arrow'))"
+                 @mouseenter.throttle.1500ms="boop($event.target.querySelector('.faq__arrow'))"
               >
                 <h4>Includes</h4>
                 <svg
@@ -330,7 +332,7 @@
               </div>
               <div
                 class="prezzi__tab"
-                @mouseenter="boop($event.target.querySelector('.faq__arrow'))"
+                 @mouseenter.throttle.1500ms="boop($event.target.querySelector('.faq__arrow'))"
               >
                 <h4>Optional Extras</h4>
                 <svg
@@ -364,10 +366,13 @@
                   </template>
                 </ul>
                
-               <button class="pushable">
+               <button 
+ @click="$store.packages.openModal(slide.title)"  class="pushable">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front"> Acquisto </span>
+
+
           
         </button>
             </div>
@@ -496,7 +501,7 @@
             stroke-width="1px"
             stroke-linecap="round"
             stroke-linejoin="round"
-            @mouseenter="boop($event.target)"
+             @mouseenter.throttle.1500ms="boop($event.target)"
           >
             <circle r="6" cx="8" cy="8" />
 
@@ -513,7 +518,7 @@
           <svg
             class="next"
             @click="next"
-            @mouseenter="boop($event.target)"
+             @mouseenter.throttle.1500ms="boop($event.target)"
             viewBox="0 0 16 16"
             fill="none"
             stroke="white"
@@ -537,7 +542,7 @@
           <template x-for="(slide, index) in slides" :key="index">
             <button
               class="dot"
-              @mouseenter="boop($event.target)"
+               @mouseenter.throttle.1500ms="boop($event.target)"
               :class="{ 'active': current === index }"
               @click="current = index"
             ></button>
@@ -681,13 +686,64 @@
       </svg>
 
       <h2 class="section__header">Contatti e F.A.Q</h2>
-      <div class="contatti__container | breakout">
-        <button class="pushable">
+      <div class="contatti__container | breakout"
+       x-data x-init="$root = $el.closest('[x-data]')">
+        <!-- <button class="pushable">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front"> Contact me! </span>
          
-        </button>
+        </button> -->
+        <div x-data class="contatti__details">
+          <h3 class="subsection__header">Contact Me</h3>
+          <p>Hai un’idea geniale? Facciamola brillare online! Contattami ora e trasformiamo il tuo progetto in un sito che lascia il segno.</p>
+          <div 
+          class="contatti__details-row"
+            @mouseenter.throttle.1500ms="boop($event.target.querySelector('.point__svg'))">
+            <svg xmlns="http://www.w3.org/2000/svg" class="point__svg" viewBox="0 0 74.29 103.95">
+
+ 
+    <path d="M68.91,18.5C63.54,9.82,51.35.4,36.73.5c-14.33.1-26.35,9.3-31.63,18-11.99,19.78-.36,55.52,32.75,84.78,32.35-29.27,43.31-64.99,31.06-84.78ZM37.15,54.01c-9.67,0-17.51-7.84-17.51-17.51s7.84-17.5,17.51-17.5,17.5,7.83,17.5,17.5-7.83,17.51-17.5,17.51Z"/>
+  
+</svg>
+            <a href="">Indirizzo</a></div>
+          <div 
+          class="contatti__details-row"
+            @mouseenter.throttle.1500ms="boop($event.target.querySelector('.mail__svg'))"
+          >
+      <svg xmlns="http://www.w3.org/2000/svg" class="mail__svg"viewBox="0 0 128.19 64.94">
+
+ 
+    <g id="d" data-name="mail">
+      <rect class="mail__outside" width="128.19" height="64.94" rx="4" ry="4"/>
+      <path class="mail__inside" d="M114.5,5.41c-5.68-.92-11.07,3.93-14.07,6.5-5.07,4.36-12.15,9.8-22.23,16.18-3.49,2.21-7.34,4.53-11.6,6.96-.82.47-1.66.94-2.51,1.42-.85-.48-1.69-.95-2.51-1.42-4.26-2.43-8.11-4.75-11.6-6.96-10.07-6.38-17.15-11.82-22.23-16.18-3-2.57-8.39-7.42-14.06-6.5-4.06.65-7.86,4.18-8.04,7.71-.15,2.91,2.19,5.24,3.84,6.66,4.69,4.05,15.25,10.52,25.88,16.65-7.13,4.23-13.63,8.36-16.85,11.13-1.37,1.18-3.32,3.13-3.2,5.56.15,2.94,3.32,5.89,6.71,6.44,4.73.76,9.23-3.28,11.74-5.43,3.44-2.96,8-6.53,14.12-10.62,8.03,4.46,14.52,7.91,16.19,8.79v.02h.01s.01,0,.01,0v-.02c1.67-.88,8.16-4.34,16.2-8.79,6.11,4.09,10.67,7.66,14.12,10.62,2.5,2.15,7,6.19,11.73,5.43,3.39-.55,6.56-3.5,6.71-6.44.12-2.43-1.83-4.38-3.2-5.56-3.22-2.77-9.72-6.9-16.85-11.13,10.63-6.13,21.19-12.6,25.89-16.65,1.64-1.42,3.98-3.75,3.83-6.66-.18-3.53-3.98-7.06-8.03-7.71Z"/>
+    </g>
+ 
+</svg>
+            <a href="">Email</a></div>
+          <div 
+          class="contatti__details-row"
+       @mouseenter.throttle.1500ms="boop($event.target.querySelector('.phone'))">
+          
+            <svg xmlns="http://www.w3.org/2000/svg" class="telefono__svg" viewBox="0 0 69.19 74.64">
+ 
+ 
+    <g>
+      <path class="one" d="M34.6.5C15.77.5.5,15.76.5,34.59c0,7.23,2.25,13.93,6.08,19.44,0,0,0,0,0,0l-5.39,19.71c6.25-2.79,12.49-5.58,18.74-8.37,0,0,0,0,0,0,4.44,2.12,9.42,3.31,14.67,3.31,18.83,0,34.09-15.27,34.09-34.1S53.43.5,34.6.5ZM34.6,60.73c-14.44,0-26.14-11.71-26.14-26.14s11.7-26.13,26.14-26.13,26.13,11.7,26.13,26.13-11.7,26.14-26.13,26.14Z"/>
+      <path class="phone" d="M20.24,20.86c-2.64,4.27-1.12,9.42-.08,12.97.85,2.91,2.83,8.09,7.82,13.33.94.98,8.73,8.95,15.88,6.72.62-.19,3.83-1.2,4.43-3.66.69-2.84-2.22-6.95-5.34-6.57-1.69.21-3.16,1.69-3.89,3.64-2.23-1.28-5.68-3.62-8.78-7.6-3.74-4.78-5.14-9.57-5.71-12.23,2.49.12,4.72-1.17,5.55-3.14,1.33-3.14-1.36-6.96-4.15-7.34-3.06-.42-5.41,3.38-5.72,3.88Z"/>
+    </g>
+ 
+</svg>
+
+
+            <a href="">Telefono</a></div>
+          <p>Some more things</p>
+          <button class="pushable"
+           @click="$store.packages.selectedPackage = 'grow'; $store.packages.openModal()">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front"> Contact me! </span>
+        </div>
         <div class="faq__container">
           <div x-data="{open:false}" x-bind:data-open="open" class="faq__item">
             <div class="faq__header">
@@ -821,9 +877,35 @@
       </div>
       <%- include('./partials/footer.ejs') %>
     </section>
+  
   </body>
 
   <script>
+     document.addEventListener('alpine:init', () => {
+    Alpine.store('packages', {
+      selectedPackage: '',
+       packageMap: {
+      Root: 'root',
+      Seed: 'seed',
+      Growth: 'growth',
+      Flourish: 'flourish'
+    },
+openModal(packageTitle) {
+  console.log('Opening modal for:', packageTitle);
+  this.selectedPackage = this.packageMap[packageTitle];
+  document.querySelector('[x-ref="modal"]').showModal();
+},
+
+
+    closeModal(){
+     
+      document.querySelector('[x-ref="modal"]').close();
+    }
+
+    });
+  });
+
+
     const canvas = document.getElementById("circleCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -1131,6 +1213,7 @@
     function packageCarousel() {
       return {
         current: 0,
+        selectedPackage: '',
         slides: [
           {
             svg: `<%- include('./partials/svgseed.ejs') %>`,

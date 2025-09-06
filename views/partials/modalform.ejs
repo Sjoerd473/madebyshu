@@ -1,0 +1,44 @@
+   <dialog  x-ref="modal" x-cloak>
+  <div class="contact__modal">
+    <form method="dialog">
+      <div class="form__row">
+          <label for="firstName"></label>
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+         <label for="lastName"></label>
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+      </div>
+      <label for="email"></label>
+      <input type="email" name="email" id="email" placeholder="Email" autocomplete="email" required>
+      <label for="package">I am interested in:</label>
+      <select name="package" id="package" x-model="$store.packages.selectedPackage">
+        <option value="root">Root</option>
+        <option value="seed">Seed</option>
+        <option value="growth">Growth</option>
+        <option value="flourish">Flourish</option>
+      </select>
+      <label for="message"></label>
+      <textarea name="message" id="message" placeholder="Your Message"></textarea>
+    <button class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front"> Submit</span>
+            </button>
+    </form>
+    <div class="modal__text">
+        <h4 class="subsection__header">Some header</h4>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum itaque, possimus porro labore maiores blanditiis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, doloribus.</p>
+    </div>
+    <div class="modal__close-svg">
+      <svg
+      width="50"
+      height="25"
+      stroke="white"
+      stroke-width="5px"
+      @click="$store.packages.closeModal()"
+      >
+      <circle r="20" cx="8" cy="8" />
+      </svg>
+    </div>
+  </div>
+</dialog>
