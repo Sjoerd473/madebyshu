@@ -122,15 +122,15 @@
         </svg>
       </div>
     </section>
-    <section id="perche" class="full-width perche">
+    <section x-data id="perche" class="full-width perche">
       <h2 class="section__header">Perchè?</h2>
       <div class="perche__container | breakout">
-        <div class="perche__tiny-svg">
+      
           <%- include('./partials/svgseed.ejs') %>
-        </div>
-        <h3 x-data x-intersect.once="seed()" class="thing">Sow</h3>
-        <div class="flex">
-          <div>
+       
+        <h3  x-intersect.once="seed()" class="thing">Sow</h3>
+        <div x-intersect.once="slidein($el)" class="perche__cards-one | flex">
+          <div class="perche__card">
             <h4 class="subsection__header">Built Around You</h4>
             <p>
               <b>Your website should feel like home</b>. I don’t use templates—I
@@ -138,7 +138,7 @@
               voice, and your vision.
             </p>
           </div>
-          <div>
+          <div class="perche__card">
             <h4 class="subsection__header">Gentle Guidance, Clear Direction</h4>
             <p>
               <b>Not sure where to start? That’s okay</b>. I’ll walk you through
@@ -147,7 +147,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="perche__card">
             <h4 class="subsection__header">Sustainable by Nature</h4>
             <p>
               <b>Good design lasts</b>. I build with clean code, ethical tools,
@@ -159,8 +159,8 @@
 
         <%- include('./partials/svggrow.ejs') %>
         <h3 x-data x-intersect.once="grow()" class="thing">Grow</h3>
-        <div class="flex">
-          <div>
+        <div x-intersect.once="slidein($el)" class="perche__cards-two | flex">
+          <div class="perche__card">
             <h4 class="subsection__header">Responsive & Reliable</h4>
             <p>
               <b>I’m here when you need me</b>. Fast replies, flexible
@@ -169,7 +169,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="perche__card">
             <h4 class="subsection__header">
               Creative, But Never Overcomplicated
             </h4>
@@ -181,7 +181,7 @@
             <?xml version="1.0" encoding="UTF-8"?>
           </div>
 
-          <div>
+          <div class="perche__card">
             <h4 class="subsection__header">Calm, not Chaos</h4>
             <p>
               <b>Tech doesn’t have to be stressful</b>. I make the process feel
@@ -194,8 +194,8 @@
 
         <%- include('./partials/svgflourish.ejs') %>
         <h3 x-data x-intersect.once="flourish()" class="thing">Flourish</h3>
-        <div class="flex">
-          <div>
+        <div x-intersect.once="slidein($el)" class="perche__cards-three | flex">
+          <div class="perche__card">
             <h4 class="subsection__header">Clarity over Clutter</h4>
             <p>
               <b>You don’t need to have it all figured out</b>. I help you
@@ -204,7 +204,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="perche__card">
             <h4 class="subsection__header">Rooted in Authenticity</h4>
             <p>
               <b>You’re not just another client</b>. I work with people who
@@ -213,7 +213,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="perche__card">
             <h4 class="subsection__header">
               Made for Small Teams & Solo Founders
             </h4>
@@ -244,7 +244,7 @@
           </p>
           <div class="prezzi__buttons">
             <svg
-              class="prev"
+              class="prev hover__color"
               @click="prev"
                @mouseenter.throttle.1500ms="boop($event.target)"
               :style="current === 0 ? 'visibility: hidden' : 'visibility: visible'"
@@ -260,7 +260,7 @@
             </svg>
 
             <svg
-              class="next"
+              class="next hover__color"
               @click="next"
                @mouseenter.throttle.1500ms="boop($event.target)"
               :style="current === slides.length - 1 ? 'visibility: hidden' : 'visibility: visible'"
@@ -493,7 +493,7 @@
       <div>
         <div class="carousel__buttons">
           <svg
-            class="prev"
+            class="prev hover__color"
             @click="prev"
             viewBox="0 0 16 16"
             fill="none"
@@ -516,7 +516,7 @@
           </svg>
 
           <svg
-            class="next"
+            class="next hover__color"
             @click="next"
              @mouseenter.throttle.1500ms="boop($event.target)"
             viewBox="0 0 16 16"
@@ -580,7 +580,6 @@
         </svg>
       </div>
 
-      <?xml version="1.0" encoding="UTF-8"?>
       <svg
         id="a"
         data-name="Livello 1"
@@ -588,7 +587,7 @@
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1430.95 1642.02"
       >
-        <defs></defs>
+      
 
         <path
           id="b"
@@ -744,7 +743,7 @@
           <span class="edge"></span>
           <span class="front"> Contact me! </span>
         </div>
-        <div class="faq__container">
+        <!-- <div class="faq__container">
           <div x-data="{open:false}" x-bind:data-open="open" class="faq__item">
             <div class="faq__header">
               <h4>Click Me</h4>
@@ -873,7 +872,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <%- include('./partials/footer.ejs') %>
     </section>
@@ -893,13 +892,22 @@
 openModal(packageTitle) {
   console.log('Opening modal for:', packageTitle);
   this.selectedPackage = this.packageMap[packageTitle];
-  document.querySelector('[x-ref="modal"]').showModal();
+  const modal = document.querySelector('[x-ref="modal"]')
+  modal.showModal();
+  modal.classList.add('slide-in')
 },
 
 
     closeModal(){
+      const modal = document.querySelector('[x-ref="modal"]')
+      modal.classList.remove('slide-in');
+      modal.classList.add('slide-out');
+
+      setTimeout(() => {
+      modal.classList.remove("slide-out");
+      modal.close();
+    }, 500)
      
-      document.querySelector('[x-ref="modal"]').close();
     }
 
     });
@@ -1018,6 +1026,23 @@ openModal(packageTitle) {
       let x = document.querySelector(".flourish");
       x.classList.add("flourish__ani");
     }
+
+    function slidein(x){
+      const cards = x.querySelectorAll('div');
+      console.log(cards)
+
+      cards.forEach((card, index) =>{
+        console.log(index)
+       
+        card.style.setProperty("--delay", `${index * 500}ms`);
+
+        card.classList.add('perche__slide')
+        card.classList.add('perche__border')
+
+      })
+      
+    }
+
     function menuBgChange() {
       document.documentElement.style.setProperty(
         "--hero-color",
@@ -1044,6 +1069,16 @@ openModal(packageTitle) {
 
       sun.classList.toggle("rotate");
       moon.classList.toggle("rotate");
+      
+       const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.startViewTransition(()=>{
+  document.documentElement.setAttribute('data-theme', newTheme);
+
+    }
+  )
+    
+  
     }
     function rotatePrezzi(e) {
       e.classList.toggle("rotatePrezzi");
