@@ -28,7 +28,7 @@
         autocomplete="email"
         required
       />
-      <label for="package">I am interested in:</label>
+      <!-- <label for="package">I am interested in:</label>
       <select
         name="package"
         id="package"
@@ -38,7 +38,55 @@
         <option value="seed">Seed</option>
         <option value="growth">Growth</option>
         <option value="flourish">Flourish</option>
-      </select>
+      </select> -->
+      
+      <p>I am interested in:</p>
+      <div class="boxes">
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="seed"
+           />
+           <div class="form-seed box">
+            <span>Seed</span>
+           </div>
+        </label>
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="bud"
+           />
+           <div class="form-bud box">
+            <span>Bud</span>
+           </div>
+        </label>
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="growth"
+           />
+           <div class="form-growth box">
+            <span>Growth</span>
+           </div>
+        </label>
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="flourish"
+           />
+           <div class="form-flourish box">
+            <span>Flourish</span>
+           </div>
+        </label>
+      </div>
+      
+ 
+
+
       <label for="message"></label>
       <textarea
         name="message"
@@ -60,7 +108,7 @@
       <p>
        Your details stay private and secure, always. I usually respond within 1–2 business days.
       </p>
-
+      <img class="modal__img "src="../shu/portrait thinking.png" alt="">
      
 
     </div>

@@ -73,7 +73,7 @@
         </div>
         <div class="hero__text">
           <div class="hero__text-container">
-            <h1>Plant the Seeds of Your Online Presence</h1>
+            <h1>Plant the Seeds of Your Online Presence Hello World</h1>
             <p>
               Every mission starts small—like a seed. I help purpose-driven
               individuals and organizations grow websites that reflect their
@@ -219,11 +219,35 @@
           <p>
             Every project starts with a conversation. The packages you see here are starting points—seeds, buds, and blossoms to help you imagine what’s possible. But just like no two gardens are the same, no two websites should be either.
           </p>
-          <p>If you’re not sure what shape your site should take—what colors, tone, structure, or even what story you want to tell—I offer a facilitation service in collaboration with <a href="https://www.spaziogaia.it" target="_blank">Spazio Gaia</a>. Together, we guide you through a creative process to uncover your vision, values, and voice. It’s not just about design—it’s about discovery.</p>
+          <p>If you’re not sure what shape your site should take—what colors, tone, structure, or even what story you want to tell—I offer a facilitation service in collaboration with 
+           <span x-data="sparkleComponent()"
+           x-intersect:enter="start()"
+           x-intersect:leave="stop()"
+           
+           
+           class="sparkle-wrapper">
+<template x-for="sparkle in sparkles" :key="sparkle.id">
+  <svg
+    viewBox="0 0 20 20"
+    class="sparkle-svg"
+    xmlns="http://www.w3.org/2000/svg"
+    :style="`top: ${sparkle.top}; left: ${sparkle.left}; width: ${sparkle.size}px; height: ${sparkle.size}px;`"
+  >
+    <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="gold" stroke="goldenrod" />
+  </svg>
+</template>
+
+  <a href="https://www.spaziogaia.it" target="_blank">Spazio Gaia.</a>
+</span>
+             Together, we guide you through a creative process to uncover your vision, values, and voice. It’s not just about design—it’s about discovery.</p>
           <p>
             I craft each site with care, adapting to your story, your goals, and your rhythm. If none of these packages feel quite right, that’s okay. I’m always happy to mix, match, and tailor something just for you.
           </p>
-          <p>Let’s co-create something that fits—not just your budget, but your vision.</p>
+          <p>Let’s co-create
+   
+            something that fits—not just your budget, but your vision.</p>
+
+          
           <div class="prezzi__buttons">
             <svg
               class="prev hover__color"
@@ -900,15 +924,28 @@ openModal(packageTitle) {
     const baseRadius = 340;
     const radiusStep = 20;
 
-    const colors = [
-      "violet",
-      "indigo",
-      "blue",
-      "green",
-      "yellow",
-      "orange",
-      "red",
-    ];
+    // const colors = [
+    //   "violet",
+    //   "indigo",
+    //   "blue",
+    //   "green",
+    //   "yellow",
+    //   "orange",
+    //   "red",
+    // ];
+
+    const cssVars = getComputedStyle(document.documentElement);
+
+const colors = [
+  cssVars.getPropertyValue('--rainbow-one').trim(),
+  cssVars.getPropertyValue('--rainbow-two').trim(),
+  cssVars.getPropertyValue('--rainbow-three').trim(),
+  cssVars.getPropertyValue('--rainbow-four').trim(),
+  cssVars.getPropertyValue('--rainbow-five').trim(),
+  cssVars.getPropertyValue('--rainbow-six').trim(),
+  cssVars.getPropertyValue('--rainbow-seven').trim(),
+];
+
 
     let mouseX = centerX;
     let mouseY = centerY;
@@ -1083,8 +1120,15 @@ openModal(packageTitle) {
           this.sparkleInterval = setInterval(() => {
             this.sparkles.push(this.generateSparkle());
             this.cleanupSparkles();
-          }, Math.random() * 300 + 200);
+          }, Math.random() * 300 + 400);
         },
+
+        stop() {
+      clearInterval(this.sparkleInterval);
+      this.sparkleInterval = null;
+      this.sparkles = []; // optional: clear sparkles when leaving
+    },
+
       };
     }
     function imageController() {
@@ -1363,17 +1407,4 @@ openModal(packageTitle) {
   </script>
 </html>
 
-<!-- <div x-data="sparkleComponent()" x-init="start()" class="sparkle-wrapper">
-<template x-for="sparkle in sparkles" :key="sparkle.id">
-  <svg
-    viewBox="0 0 20 20"
-    class="sparkle-svg"
-    xmlns="http://www.w3.org/2000/svg"
-    :style="`top: ${sparkle.top}; left: ${sparkle.left}; width: ${sparkle.size}px; height: ${sparkle.size}px;`"
-  >
-    <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="green" stroke="green" />
-  </svg>
-</template>
 
-  <span class="sparkle-text">VerdeChiaro</span>
-</div> -->

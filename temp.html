@@ -284,3 +284,18 @@ draw();
               </div>
             </div>
           </div>
+
+          <div x-data="sparkleComponent()" x-init="start()" class="sparkle-wrapper">
+<template x-for="sparkle in sparkles" :key="sparkle.id">
+  <svg
+    viewBox="0 0 20 20"
+    class="sparkle-svg"
+    xmlns="http://www.w3.org/2000/svg"
+    :style="`top: ${sparkle.top}; left: ${sparkle.left}; width: ${sparkle.size}px; height: ${sparkle.size}px;`"
+  >
+    <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="green" stroke="green" />
+  </svg>
+</template>
+
+  <span class="sparkle-text">VerdeChiaro</span>
+</div>
