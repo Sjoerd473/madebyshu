@@ -854,7 +854,8 @@ nav {
 }
 
 .hero__container {
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   display: flex !important;
   justify-content: space-around;
 }
@@ -996,6 +997,27 @@ nav {
       fill: oklch(from var(--color-primary-400) calc(l - 0.1) c h);
     } */
   }
+}
+
+@media (width < 1000px) {
+
+  .hero__container{
+    display:flow !important;
+    min-height:60vh;
+    z-index:5;
+  }
+
+  .hero__images{
+    max-width:50%;
+    margin: auto;
+  }
+
+  .hero__text{
+    max-width: 100%;
+    margin:auto;
+    padding-inline:var(--size-500);
+  }
+  
 }
 
 /* Perchè */
@@ -1470,6 +1492,15 @@ opacity: 1 !important;
   pointer-events: none;
 }
 
+
+@media (width < 1000px) {
+
+  .perche{
+    padding-block-start: 10rem;
+  }
+  
+}
+
 /* Portfolio */
 
 .portfolio {
@@ -1675,7 +1706,7 @@ opacity: 1 !important;
 .aboutme__flex {
   display: flex !important;
   flex-wrap: wrap;
-  max-width: 60%;
+  /* max-width: 70%; */
   justify-self: end;
   margin-inline-end: var(--size-400);
   > div {
@@ -1722,43 +1753,6 @@ opacity: 1 !important;
   border-right:5px solid var(--color-neutral-100);
 }
 
-.cube__container {
-  perspective: 800px;
-}
-
-.cube {
-  width: 300px;
-  height: 300px;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: spin 15s linear infinite;
-}
-.cube__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cube-face--front {
-  transform: rotateY(0deg) translateZ(150px);
-}
-
-.cube-face--back {
-  transform: rotateY(180deg) translateZ(150px);
-}
-
-@keyframes spin {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
 
 
 
@@ -1943,6 +1937,47 @@ opacity: 1 !important;
     stroke: var(--color-neutral-100);
     max-width: 3rem;
   }
+}
+
+@media (width > 1600px) {
+
+  .prezzi__container{
+    min-height:70vh;
+  }
+  
+}
+
+@media (width < 1050px) {
+  .prezzi__container{
+    display:flow;
+  }
+
+  .prezzi__text{
+    max-width:100%;
+    margin-inline-end: 0;
+  }
+
+  .prezzi__items{
+    display:flow;
+    /* margin:auto; */
+  }
+  .prezzi__items{
+    height:1000px;
+  }
+
+  .prezzi__buttons{
+    margin-block:var(--size-500);
+  }
+}
+
+@media (width < 650px) {
+.prezzi__items{
+  width:100%;
+}
+  .prezzi__item{
+    width:auto;
+  }
+  
 }
 
 .rotatePrezzi{
