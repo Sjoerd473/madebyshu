@@ -4,5 +4,6 @@ const codeRouter = Router();
 // basicauth here if needed
 
 codeRouter.get('/', codeController.indexGet)
+codeRouter.post('/form', codeController.formPost)
 
 module.exports = codeRouter

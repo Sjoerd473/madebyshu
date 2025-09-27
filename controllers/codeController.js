@@ -7,7 +7,12 @@ indexGet = async (req, res) => {
     res.render('indexCode', {title: 'Made By Shu - Web Developement'})
 }
 
+formPost = async (req, res) => {
+    
+    res.render('formResponse')
+}
 
 module.exports = {
-    indexGet
+    indexGet,
+    formPost
 }
