@@ -874,25 +874,39 @@
   </body>
 
   <script>
-     document.addEventListener('alpine:init', () => {
-    Alpine.store('packages', {
-      selectedPackage: '',
-       packageMap: {
-      Root: 'root',
+    document.addEventListener('alpine:init', () => {
+  Alpine.store('packages', {
+    selectedPackage: '',
+    packageMap: {
+      Bud: 'bud',
       Seed: 'seed',
       Growth: 'growth',
       Flourish: 'flourish'
     },
-openModal(packageTitle) {
- 
-  this.selectedPackage = this.packageMap[packageTitle];
-  const modal = document.querySelector('[x-ref="modal"]')
-  modal.showModal();
-  modal.classList.add('slide-in')
-},
+    openModal(packageTitle) {
+      this.selectedPackage = this.packageMap[packageTitle];
 
+      // Show the modal
+      const modal = document.querySelector('[x-ref="modal"]');
+      modal.showModal();
+      modal.classList.add('slide-in');
 
-    closeModal(){
+     // Uncheck all radio buttons
+  modal.querySelectorAll('input[type="radio"][name="package"]').forEach(radio => {
+    radio.checked = false;
+  });
+
+  // Remove active class from all boxes
+  modal.querySelectorAll('.box').forEach(box => box.classList.remove('active'));
+
+  // Check the selected radio button
+   const radio = modal.querySelector(`input[type="radio"][value="${this.selectedPackage}"]`);
+      if (radio) {
+        radio.checked = true;
+      }
+    },
+
+     closeModal(){
       const modal = document.querySelector('[x-ref="modal"]')
       modal.classList.remove('slide-in');
       modal.classList.add('slide-out');
@@ -903,9 +917,41 @@ openModal(packageTitle) {
     }, 500)
      
     }
-
-    });
   });
+});
+
+//      document.addEventListener('alpine:init', () => {
+//     Alpine.store('packages', {
+//       selectedPackage: '',
+//        packageMap: {
+//       Root: 'root',
+//       Seed: 'seed',
+//       Growth: 'growth',
+//       Flourish: 'flourish'
+//     },
+// openModal(packageTitle) {
+ 
+//   this.selectedPackage = this.packageMap[packageTitle];
+//   const modal = document.querySelector('[x-ref="modal"]')
+//   modal.showModal();
+//   modal.classList.add('slide-in')
+// },
+
+
+//     closeModal(){
+//       const modal = document.querySelector('[x-ref="modal"]')
+//       modal.classList.remove('slide-in');
+//       modal.classList.add('slide-out');
+
+//       setTimeout(() => {
+//       modal.classList.remove("slide-out");
+//       modal.close();
+//     }, 500)
+     
+//     }
+
+//     });
+//   });
 
 
     const canvas = document.getElementById("circleCanvas");
@@ -1430,14 +1476,14 @@ if (savedTheme) {
 
           if (offset === 0) {
             // Active card
-            return "transform: translateX(0px) scale(1); opacity: 1; background: var(--treetop-bottom)";
+            return "transform: translateX(0px) scale(1); opacity: 1; background: var(--card-color)";
           }
 
           // Cards to the right
           return `pointer-events:none;
  
    transform: translate(${offset * 100}px, 0) scale(${1 - offset * 0.12});
-   background: oklch(from var(--treetop-bottom) calc(l + ${index} * 0.03) c h);
+   background: oklch(from var(--card-color) calc(l + ${index} * var(--multiplier)) calc(c + ${index} / 10) h);
    --x:${offset * 100}px;
    --s:${1 - offset * 0.12};
    --delay: ${index * 100}ms;
