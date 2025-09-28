@@ -1,18 +1,94 @@
-// const db = require("../db/queries")
-// const { body, validationResult } = require("express-validator");
+const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
 
-// const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
+const mail = require('../public/mail.js')
+
+let transporter;
+async function mailSetter() {
+
+ 
+ 
+  transporter =  nodemailer.createTransport({
+
+    service: "gmail",
+    auth: {
+      user: process.env.MAIL,
+      pass: process.env.MAILPASS  ,
+    },
+  });
+}
+mailSetter()
+
+const validateModule = [
+  body("firstName")
+    .trim()
+    .notEmpty()
+    .isLength({ min: 2, max: 30 })
+    .withMessage("First name must be between 2 and 30 characters")
+    .matches(/^[a-zA-ZÀ-ÿ\s'-]+$/)
+    .withMessage("First name contains invalid characters")
+    .escape(),
+
+  body("lastName")
+    .trim()
+    .notEmpty()
+    .isLength({ min: 2, max: 30 })
+    .withMessage("Last name must be between 2 and 30 characters")
+    .matches(/^[a-zA-ZÀ-ÿ\s'-]+$/)
+    .withMessage("Last name contains invalid characters")
+    .escape(),
+
+    body("email")
+        .trim()
+        .isEmail()
+        .withMessage(`Email address invalid`)
+        .normalizeEmail(),
+  body("message")
+    .trim()
+    .escape()
+    .isLength({ min: 10, max: 1000 })
+    .withMessage("Message must be between 10 and 1000 characters")
+    .matches(/^[^<>]*$/)
+    .withMessage("Message cannot contain angle brackets or HTML tags"),
+];
 
 indexGet = async (req, res) => {
-    res.render('indexCode', {title: 'Made By Shu - Web Developement'})
+  res.render("indexCode", { title: "Made By Shu - Web Developement" });
+};
+
+formGet = async (req, res) => {
+   
+    res.render('./partials/modalform.ejs')
 }
 
-formPost = async (req, res) => {
+formPost = [validateModule, async (req, res, net) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log(errors.array());
+
+        return res.render("./partials/modalerror", {
+            errors: errors.array()
+        });
+    }
+    db.postModule(req.body);
+
+   
+    transporter
+        .sendMail(mail.replyModule(req.body))
+        
+        .catch(console.error);
     
-    res.render('formResponse')
-}
+    res.render("./partials/formResponse")
+},
+];
+
+
+
+
 
 module.exports = {
     indexGet,
-    formPost
-}
+    formGet,
+  formPost,
+};

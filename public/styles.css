@@ -2921,6 +2921,13 @@ transition: transform, stroke, opacity;
   }
 }
 
+.error__list{
+  >li{
+    font-size: var(--size-400);
+    margin-block:0.5em;
+  }
+}
+
 
 
 .modal__img{

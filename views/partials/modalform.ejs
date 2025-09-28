@@ -1,4 +1,4 @@
-<dialog x-ref="modal">
+<dialog id='dialog' x-ref="modal">
   <div class="contact__modal">
     <form
      hx-post="/webdev/form"
@@ -95,6 +95,7 @@
         name="message"
         id="message"
         placeholder="Your Message"
+        required
       ></textarea>
       <button
       class="pushable">

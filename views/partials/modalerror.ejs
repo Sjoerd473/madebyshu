@@ -1,0 +1,135 @@
+
+ <div class="contact__modal">
+    <form
+     hx-post="/webdev/form"
+     hx-target=".contact__modal"
+     hx-swap="outerHTML">
+      <div class="form__row">
+        <label for="firstName"></label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="First Name"
+          required
+        />
+        <label for="lastName"></label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Last Name"
+          required
+        />
+      </div>
+      <label for="email"></label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        autocomplete="email"
+        required
+      />
+      <!-- <label for="package">I am interested in:</label>
+      <select
+        name="package"
+        id="package"
+        x-model="$store.packages.selectedPackage"
+      >
+        <option value="root">Root</option>
+        <option value="seed">Seed</option>
+        <option value="growth">Growth</option>
+        <option value="flourish">Flourish</option>
+      </select> -->
+      
+      <p>I am interested in:</p>
+      <div class="boxes">
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="seed"
+           />
+           <div class="form-seed box">
+            <span>Seed</span>
+           </div>
+        </label>
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="bud"
+           />
+           <div class="form-bud box">
+            <span>Bud</span>
+           </div>
+        </label>
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="growth"
+           />
+           <div class="form-growth box">
+            <span>Growth</span>
+           </div>
+        </label>
+        <label>
+          <input
+           type="radio"
+           name="package"
+           value="flourish"
+           />
+           <div class="form-flourish box">
+            <span>Flourish</span>
+           </div>
+        </label>
+      </div>
+      
+ 
+
+
+      <label for="message"></label>
+      <textarea
+        name="message"
+        id="message"
+        placeholder="Your Message"
+      ></textarea>
+      <button
+      class="pushable">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front"> Submit</span>
+      </button>
+    </form>
+   <div class="modal__text">
+  <h2 class="subsection__header">Form Submission Error</h2>
+  <ul class="error__list">
+    <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+</div>
+  </div>
+  <div class="modal__close-svg">
+  
+
+    <svg
+    class="close"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="-10 -10 124.6 124.6"
+      @click="$store.packages.closeModal()"
+      @mouseenter.throttle.1500ms="boop($event.target)"
+    >
+      <circle
+     
+      class="circle" cx="52.3" cy="52.3" r="50.3" />
+      <g
+      
+      class="cross">
+        <line x1="23.84" y1="23.84" x2="80.77" y2="80.77" />
+        <line x1="80.77" y1="23.84" x2="23.84" y2="80.77" />
+      </g>
+    </svg>
+  </div>
