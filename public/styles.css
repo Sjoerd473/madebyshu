@@ -1706,6 +1706,7 @@ opacity: 1 !important;
   width: 400px;
   left: 25%;
   top: 5%;
+  pointer-events: none;
   /* transform:translateX(-50%); */
   z-index: 1;
   > img {
@@ -2204,7 +2205,7 @@ opacity: 1 !important;
 @media (width > 1600px) {
 
   .prezzi__container{
-    min-height:70vh;
+    min-height:130vh;
   }
   
 }
@@ -2473,11 +2474,11 @@ filter:drop-shadow(-5px -5px 50px var(--treetop-bottom))
 
 
 :root[data-theme='dark'] .faq {
-  background-image: url('../Risorsa 8.svg');
+  background-image: url('../alberolight.svg');
 }
 
 :root[data-theme='light'] .faq {
-  background-image: url('../Risorsa 7.svg');
+  background-image: url('../alberodark.svg');
 }
 
 
@@ -2731,7 +2732,7 @@ p{
       border:none;
   margin-block:1.5em;
    /* background-color:rgba(70, 66, 66, 0.166); */
-   background-color: var(--text-color);
+   /* background-color: var(--color-neutral-100); */
    color:(var(--color-neutral-900));
    padding-block:0.5em;
    padding-inline-start: 0.25em;

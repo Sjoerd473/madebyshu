@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_2" data-name="Livello 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.67 127.73">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #5d4c37;
+        font-family: TimesNewRomanPS, 'Times New Roman PS';
+        font-size: 14px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        font-size: 63.84px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #5c4b36;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        font-family: TimesNewRomanPS-BoldMT, 'Times New Roman';
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        font-size: 62.99px;
+      }
+
+      .cls-7 {
+        fill: #bcbabc;
+      }
+
+      .cls-5 {
+        fill: #a60000;
+        font-size: 64.89px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-6" width="261.67" height="127.73"/>
+  <g id="Livello_2-2" data-name="Livello 2-2">
+    <rect class="cls-6" y="3.81" width="261.67" height="109.71"/>
+    <g class="cls-2">
+      <text class="cls-1" transform="translate(158.41 21.18) scale(1.18 1)"><tspan x="0" y="0">STUDIO</tspan></text>
+    </g>
+    <g class="cls-2">
+      <text class="cls-1" transform="translate(158.49 37.86) scale(1.19 1)"><tspan x="0" y="0">GHISIGLIERI</tspan></text>
+    </g>
+    <g class="cls-2">
+      <text class="cls-1" transform="translate(158.49 54.52) scale(1.2 1)"><tspan x="0" y="0">R</tspan></text>
+      <text class="cls-1" transform="translate(169.03 54.52) scale(1.2 1)"><tspan x="0" y="0">OGIONE</tspan></text>
+    </g>
+    <g class="cls-2">
+      <text class="cls-4" transform="translate(77.26 53.06) scale(1.53 1)"><tspan x="0" y="0">H</tspan></text>
+    </g>
+    <g class="cls-2">
+      <text class="cls-3" transform="translate(0 53.06) scale(1.55 1)"><tspan x="0" y="0">G</tspan></text>
+    </g>
+    <g class="cls-2">
+      <text class="cls-5" transform="translate(115.21 106.47) rotate(-.26) scale(1.5 1)"><tspan x="0" y="0">RO</tspan></text>
+    </g>
+    <rect class="cls-7" x="4.05" y="61.98" width="101.16" height="44.19"/>
+  </g>
+</svg>
