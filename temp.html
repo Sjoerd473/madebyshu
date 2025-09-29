@@ -10,6 +10,11 @@
     </svg>
 </div>
 
+ res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'nonce-${nonce}' https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://challenges.cloudflare.com; connect-src 'self';"
+  );
+
 x-data="lineConnector"
   <svg 
         x-ref="svg"

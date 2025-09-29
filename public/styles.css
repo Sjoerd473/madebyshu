@@ -2732,6 +2732,7 @@ dialog{
 .contact__modal{
   /* position:fixed; */
   display:flex;
+  overflow-y: scroll;
   
   /* position:relative; */
  
@@ -2749,7 +2750,7 @@ p{
   --button-font-size: var(--size-300);
   --button-width: 100px;
   --button-height: 50px;
-    display:flex;
+    /* display:flex; */
     flex-direction: column;
     max-width:50%;
     padding:2em;
@@ -2776,6 +2777,14 @@ p{
     button{
       margin-inline:auto;
       margin-block:1.5em;
+      transition: opacity 250ms, filter 250ms;
+    }
+
+    button[disabled]{
+      opacity: 0.4;
+      filter: grayscale(0.8);
+      pointer-events: none;
+      
     }
 
     >.form__row{
@@ -2790,14 +2799,27 @@ p{
         margin-inline-start: auto;
       }
     }
+
+    label{
+      color:var(--text-color);
+    }
+  }
+
+  .wrapper{
+    width:100%;
+    display:grid;
   }
   
+  #message, #email{
+    width:100%;
+  }
 
 
   /* &::backdrop{
     backdrop-filter: blur(60px);
   } */
 }
+
 
 .nothing{
   color: #ff0000;
@@ -2822,7 +2844,9 @@ p{
   color:oklch(0.86 0.07 264.73);
   color: oklch(0.95 0.04 319.23);
 }
-
+.invis{
+  display:none;
+}
 .boxes{
   width:70%;
 
@@ -2836,6 +2860,8 @@ p{
     width:100%;
     height:100%;
   }
+
+ 
 
   input[type=radio]{
     display:none;
@@ -2972,8 +2998,12 @@ transition: transform, stroke, opacity;
 }
 
 .modal__portrait-svg{
-  width:50%;
-  margin:auto;
+  position: fixed;
+  width:200px;
+  bottom:0;
+  left:50%;
+  transform: translateX(50%);
+  
 }
 
 .contact__modal-response{
@@ -3031,7 +3061,7 @@ transition: transform, stroke, opacity;
 
   >form{
     max-width: 100%;
-    max-height:66%;
+    /* max-height:66%; */
 
     textarea{
       min-height:3rem;

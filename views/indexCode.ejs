@@ -231,7 +231,8 @@
     viewBox="0 0 20 20"
     class="sparkle-svg"
     xmlns="http://www.w3.org/2000/svg"
-    :style="`top: ${sparkle.top}; left: ${sparkle.left}; width: ${sparkle.size}px; height: ${sparkle.size}px;`"
+ :style="'top:' + sparkle.top + '; left:' + sparkle.left + '; width:' + sparkle.size + 'px; height:' + sparkle.size + 'px;'"
+
   >
     <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="gold" stroke="goldenrod" />
   </svg>
@@ -439,7 +440,8 @@
             x-transition:leave="slide-leave"
             x-transition:leave-start="slide-leave-start"
             x-transition:leave-end="slide-leave-end"
-            x-ref="`slide${index}`"
+            x-ref="'slide' + index"
+
           >
             <div class="portfolio__slide-text">
               <h3 class="subsection__header" x-text="slide.title"></h3>
@@ -473,9 +475,8 @@
                 <img
                   :src="img.src"
                   :alt="img.alt"
-                  :style="`--delay: ${img.delay};
-                --billow: ${img.move};
-                 --opacity: ${img.opacity}`"
+                :style="'--delay:' + img.delay + '; --billow:' + img.move + '; --opacity:' + img.opacity"
+
                   class="portfolio__slide-image"
                 />
               </template>
@@ -679,7 +680,7 @@
 
       <!-- <h2 class="section__header">Contatti e F.A.Q</h2> -->
       <div class="contatti__container | breakout"
-       x-data x-init="$root = $el.closest('[x-data]')">
+       x-data>
         <!-- <button class="pushable">
           <span class="shadow"></span>
           <span class="edge"></span>
@@ -732,10 +733,11 @@
            
        
           <button class="pushable"
-           @click="$store.packages.selectedPackage = 'grow'; $store.packages.openModal()">
+          @click="$store.packages.openModal('message', false)">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front"> Contact me! </span>
+          </button>
         </div>
         <!-- <div class="faq__container">
           <div x-data="{open:false}" x-bind:data-open="open" class="faq__item">
@@ -873,7 +875,28 @@
   
   </body>
 
-  <script>
+  <script nonce="<%= nonce %>">
+
+   
+
+     document.addEventListener('htmx:afterSwap', (e) => {
+    if (e.target.matches('#dialog')) {
+      turnstile.render('.cf-turnstile', {
+        sitekey: '0x4AAAAAAB3zG1a4FF36sEjH'
+      });
+    }
+  });
+
+   document.addEventListener('htmx:afterSwap', () => {
+    Alpine.initTree(document.querySelector('#dialog'));
+  });
+
+
+
+
+
+
+
 
 
     function packageCarousel() {

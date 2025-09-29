@@ -14,13 +14,13 @@
   "author": "Sjoerd",
   "type": "commonjs",
   "main": "app.js",
- "scripts": {
-  "build": "node build.js",
-  "watch": "esbuild ./main.js --bundle --minify --outfile=public/bundle.js --watch"
-},
-
+  "scripts": {
+    "build": "node build.js",
+    "watch": "esbuild ./main.js --bundle --minify --outfile=public/bundle.js --watch"
+  },
   "dependencies": {
     "@alpinejs/anchor": "^3.15.0",
+    "@alpinejs/csp": "^3.15.0",
     "@alpinejs/intersect": "^3.15.0",
     "alpinejs": "^3.15.0",
     "axios": "^1.12.2",

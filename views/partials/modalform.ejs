@@ -1,4 +1,4 @@
-<dialog id='dialog' x-ref="modal">
+<dialog x-data="{ consentGiven: false }" id='dialog' x-ref="modal">
   <div class="contact__modal">
     <form
      hx-post="/webdev/form"
@@ -43,48 +43,61 @@
         <option value="flourish">Flourish</option>
       </select> -->
       
-      <p>I am interested in:</p>
-      <div class="boxes">
-        <label>
-          <input
-           type="radio"
-           name="package"
-           value="seed"
-           />
-           <div class="form-seed box">
-            <span>Seed</span>
-           </div>
-        </label>
-        <label>
-          <input
-           type="radio"
-           name="package"
-           value="bud"
-           />
-           <div class="form-bud box">
-            <span>Bud</span>
-           </div>
-        </label>
-        <label>
-          <input
-           type="radio"
-           name="package"
-           value="growth"
-           />
-           <div class="form-growth box">
-            <span>Growth</span>
-           </div>
-        </label>
-        <label>
-          <input
-           type="radio"
-           name="package"
-           value="flourish"
-           />
-           <div class="form-flourish box">
-            <span>Flourish</span>
-           </div>
-        </label>
+      <div x-show="$store.packages.showPackageSelector">
+        <p>I am interested in:</p>
+        <div class="boxes"  >
+          <label class="invis">
+            <input
+             type="radio"
+             name="package"
+             value="message"
+             checked
+             />
+             <div class="form-message box">
+              <span>Message</span>
+             </div>
+          </label>
+          <label>
+            <input
+             type="radio"
+             name="package"
+             value="seed"
+             />
+             <div class="form-seed box">
+              <span>Seed</span>
+             </div>
+          </label>
+          <label>
+            <input
+             type="radio"
+             name="package"
+             value="bud"
+             />
+             <div class="form-bud box">
+              <span>Bud</span>
+             </div>
+          </label>
+          <label>
+            <input
+             type="radio"
+             name="package"
+             value="growth"
+             />
+             <div class="form-growth box">
+              <span>Growth</span>
+             </div>
+          </label>
+          <label>
+            <input
+             type="radio"
+             name="package"
+             value="flourish"
+             />
+             <div class="form-flourish box">
+              <span>Flourish</span>
+             </div>
+          </label>
+        </div>
       </div>
       
  
@@ -97,13 +110,24 @@
         placeholder="Your Message"
         required
       ></textarea>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3zG1a4FF36sEjH"></div>
-      <button
-      class="pushable">
-        <span class="shadow"></span>
-        <span class="edge"></span>
-        <span class="front"> Submit</span>
-      </button>
+       <div>
+         <label for="privacyConsent">
+           <input type="checkbox" id="privacyConsent" name="privacyConsent"
+               @change="consentGiven = $event.target.checked" required>
+
+             I accept the <a href="/privacypolicy" target="_blank" rel="noopener">privacy policy</a>.
+           </label>
+       </div>
+
+      <!-- <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3zG1a4FF36sEjH"></div> -->
+      <div class="wrapper">
+        <button
+        class="pushable" :disabled="!consentGiven">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front"> Submit</span>
+        </button>
+      </div>
     </form>
     <div class="modal__text">
       <h4 class="subsection__header">I’d love to hear from you</h4>
