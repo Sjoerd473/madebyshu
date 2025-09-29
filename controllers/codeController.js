@@ -3,9 +3,8 @@ const { body, validationResult } = require("express-validator");
 const axios = require('axios');
 
 const nodemailer = require("nodemailer");
-const mail = require('../public/mail.js')
+const mail = require('../services/mail.js')
 
-const TURNSTILE_SECRET_KEY = '2x0000000000000000000000000000000AA';
 
 let transporter;
 

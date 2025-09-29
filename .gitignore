@@ -143,4 +143,6 @@ vite.config.ts.timestamp-*
 build.js
 main.js
 temp.html
-htmx.min.js
+/public/htmx.min.js
+scripts/
+public/Shu
