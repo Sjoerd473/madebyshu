@@ -920,38 +920,7 @@
   });
 });
 
-//      document.addEventListener('alpine:init', () => {
-//     Alpine.store('packages', {
-//       selectedPackage: '',
-//        packageMap: {
-//       Root: 'root',
-//       Seed: 'seed',
-//       Growth: 'growth',
-//       Flourish: 'flourish'
-//     },
-// openModal(packageTitle) {
- 
-//   this.selectedPackage = this.packageMap[packageTitle];
-//   const modal = document.querySelector('[x-ref="modal"]')
-//   modal.showModal();
-//   modal.classList.add('slide-in')
-// },
 
-
-//     closeModal(){
-//       const modal = document.querySelector('[x-ref="modal"]')
-//       modal.classList.remove('slide-in');
-//       modal.classList.add('slide-out');
-
-//       setTimeout(() => {
-//       modal.classList.remove("slide-out");
-//       modal.close();
-//     }, 500)
-     
-//     }
-
-//     });
-//   });
 
 
     const canvas = document.getElementById("circleCanvas");
@@ -1143,13 +1112,7 @@ const colors = [
       }, 200);
     }
 
-//      const savedTheme = localStorage.getItem('theme');
-// if (savedTheme) {
-//   document.documentElement.setAttribute('data-theme', savedTheme);
-// } else {
-//   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-//   document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-// }
+
 
 const savedTheme = localStorage.getItem('theme');
 

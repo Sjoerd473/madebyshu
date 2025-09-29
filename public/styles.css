@@ -1,3 +1,30 @@
+/* chelsea-market-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Chelsea Market';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../Fonts/chelsea-market-v14-latin-regular.woff2') format('woff2'); 
+}
+
+/* nunito-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../Fonts/nunito-v32-latin-regular.woff2') format('woff2'); 
+}
+/* nunito-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../Fonts/nunito-v32-latin-700.woff2') format('woff2'); 
+}
+
+
 :root {
   --color-neutral-100: oklch(100% 0.00011 271.152);
   --color-neutral-300: oklch(95.735% 0.02153 83.231);

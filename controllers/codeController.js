@@ -1,10 +1,14 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
+const axios = require('axios');
 
 const nodemailer = require("nodemailer");
 const mail = require('../public/mail.js')
 
+const TURNSTILE_SECRET_KEY = '2x0000000000000000000000000000000AA';
+
 let transporter;
+
 async function mailSetter() {
 
  
@@ -62,26 +66,119 @@ formGet = async (req, res) => {
     res.render('./partials/modalform.ejs')
 }
 
-formPost = [validateModule, async (req, res, net) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors.array());
+// formPost = [validateModule, async (req, res, next) => {
 
-        return res.render("./partials/modalerror", {
-            errors: errors.array()
-        });
-    }
-    db.postModule(req.body);
+//      const token = req.body['cf-turnstile-response'];
+
+//   if (!token) {
+//     return res.status(400).send('No Turnstile token provided');
+//   }
+
+//   try {
+//     const response = await axios.post(
+//       'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+//       new URLSearchParams({
+//         secret: TURNSTILE_SECRET_KEY,
+//         response: token,
+//         remoteip: req.ip,
+//       }).toString(),
+//       {
+//         headers: {
+//           'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//       }
+//     );
+
+//     if (response.data.success) {
+//       res.send('Turnstile verification passed ✅');
+//     } else {
+//       res.status(403).send('Turnstile verification failed ❌');
+//     }
+//   } catch (error) {
+//     console.error('Verification error:', error);
+//     res.status(500).send('Internal server error');
+//   }
+
+
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//         console.log(errors.array());
+
+//         return res.render("./partials/modalerror", {
+//             errors: errors.array()
+//         });
+//     }
+//     db.postModule(req.body);
 
    
-    transporter
-        .sendMail(mail.replyModule(req.body))
+//     transporter
+//         .sendMail(mail.replyModule(req.body))
         
-        .catch(console.error);
+//         .catch(console.error);
     
-    res.render("./partials/formResponse")
-},
+//     res.render("./partials/formResponse")
+// },
+// ];
+
+const formPost = [
+  validateModule,
+  async (req, res, next) => {
+    const token = req.body['cf-turnstile-response'];
+
+    if (!token) {
+      return res.status(400).send('No Turnstile token provided');
+    }
+
+    try {
+      const response = await axios.post(
+        'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+        new URLSearchParams({
+          secret: process.env.SECRET_KEY,
+          response: token,
+          remoteip: req.ip,
+        }).toString(),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
+
+      if (!response.data.success) {
+        return res.status(403).send('Turnstile verification failed ❌');
+      }
+    } catch (error) {
+      console.error('Verification error:', error);
+      return res.status(500).send('Internal server error');
+    }
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log(errors.array());
+      return res.render('./partials/modalerror', {
+        errors: errors.array(),
+      });
+    }
+
+    try {
+      await db.postModule(req.body);
+
+    //   await transporter.sendMail(mail.replyModule(req.body));
+
+      res.render('./partials/formResponse');
+    } catch (err) {
+      console.error('Processing error:', err);
+      res.status(500).send('Failed to process form');
+    }
+  },
 ];
+
+
+
+
+
+
+
 
 
 
