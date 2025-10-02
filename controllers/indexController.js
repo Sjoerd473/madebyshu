@@ -17,5 +17,6 @@ indexGet = async (req, res) => {
 
 module.exports = {
     privacyGet,
+    cookieGet,
     indexGet
 }

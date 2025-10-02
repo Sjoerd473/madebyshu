@@ -9,17 +9,17 @@ const crypto = require('crypto');
 const indexRouter = require('./routes/indexRouter')
 const codeRouter = require('./routes/codeRouter')
 
-// app.use(express.static("public", {
-//   setHeaders: (res, path) => {
-//     res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-//     res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-//   }
-// }));
+app.use(express.static("public", {
+  setHeaders: (res, path) => {
+    res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  }
+}));
 
-// app.use(express.static('public', {
-//   maxAge: '7d',
-//   etag: true,
-// }));
+app.use(express.static('public', {
+  maxAge: '7d',
+  etag: true,
+}));
 
 
 app.use((req, res, next) => {
@@ -35,12 +35,12 @@ app.use((req, res, next) => {
 
 
 
-// app.use(function(req, res, next) {
-//   if (req.secure) {
-//     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
-//   }
-// next();
-// })
+app.use(function(req, res, next) {
+  if (req.secure) {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  }
+next();
+})
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -53,6 +53,6 @@ app.use('/', indexRouter);
 
 
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
-});
+  app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}`);
+  });

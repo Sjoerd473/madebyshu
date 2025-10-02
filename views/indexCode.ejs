@@ -403,20 +403,20 @@
           </p>
         </div>
         <div class="card">
-         <img src="../Logo/alpinehtmx.svg" alt="The alpinejs and HTMX logo together">
+         <img  loading="lazy" src="../Logo/alpinehtmx.svg" alt="The alpinejs and HTMX logo together">
           <h3 class="subsection__header">Alpinejs + HTMX</h3>
           <p>
             These two tools work together to create fast, interactive websites without the bulk of traditional JavaScript frameworks. </p> <p>htmx lets me add dynamic behavior directly in HTML—like loading content without full page reloads—while Alpine.js brings reactive components with minimal code.</p> <p>The result? A snappy user experience, lower carbon footprint, and clean code that’s easy to maintain.</p>
           
         </div>
         <div class="card">
-          <img src="../Logo/nodejsStackedLight.svg" alt="The nodejs Logo" />
+          <img loading="lazy" src="../Logo/nodejsStackedLight.svg" alt="The nodejs Logo" />
           <h3 class="subsection__header">Node.js</h3>
         
             <p>Node.js allows me to build scalable, efficient server-side applications using JavaScript.</p> <p>Whether it’s handling form submissions, managing databases, or powering custom APIs, Node.js gives me the flexibility to craft solutions that grow with your needs.</p> <p>It’s fast, modern, and ideal for projects that require more than just a pretty front-end.</p>
         </div>
         <div class="card">
-          <img src="../Logo/wpwhite.svg" alt="The WordPress Logo" />
+          <img loading="lazy" src="../Logo/wpwhite.svg" alt="The WordPress Logo" />
           <h3 class="subsection__header">Wordpress</h3>
           <p>
            For clients who want full control over their content, WordPress is a trusted choice. It’s perfect for blogs, portfolios, and small business sites. </p> <p>I customize WordPress themes to match your brand, optimize performance, and ensure your site is easy to update—no tech skills required. Plus, it supports sustainable hosting and accessibility best practices.</p>
@@ -460,7 +460,9 @@
             <div class="portfolio__slide-logo">
               <img
                 :src="slide.logo"
-                alt=""
+                :alt="slide.alt"
+                loading="lazy"
+                
                 :class="{ 'logo-animate': current === index }"
                 x-transition:enter="logo-enter"
                 x-transition:enter-start="logo-enter-start"
@@ -475,6 +477,7 @@
                 <img
                   :src="img.src"
                   :alt="img.alt"
+                  :loading="img.loading"
                 :style="'--delay:' + img.delay + '; --billow:' + img.move + '; --opacity:' + img.opacity"
 
                   class="portfolio__slide-image"

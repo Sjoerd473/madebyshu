@@ -304,3 +304,79 @@ draw();
 
   <span class="sparkle-text">VerdeChiaro</span>
 </div>
+
+.faq__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.faq__item {
+  margin-block: var(--size-600);
+}
+
+.faq__header {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--size-200);
+
+  border: 2px solid blue;
+
+  > h4 {
+    font-size: var(--size-500);
+  }
+
+  > svg {
+    border: 2px solid red;
+  }
+}
+.faq__text {
+  overflow: clip;
+  > p {
+    --y: -500px;
+    will-change: max-height, transform;
+    font-size: var(--size-400);
+    padding-inline: var(--size-400);
+
+    background: purple;
+    transition: transform 900ms, max-height 900ms;
+  }
+}
+
+.faq__spacer {
+  height: 0;
+  transition: height 900ms;
+  width: 100%;
+}
+
+.faq__item[data-open="true"] .faq__spacer,
+.prezzi__item[data-open="true"] .faq__spacer {
+  height: 1rem;
+}
+
+.faq-drop-enter {
+  transition: transform 900ms, max-height 900ms;
+  max-height: 0px;
+  transform: translateY(var(--y));
+}
+.faq-drop-enter-start {
+  max-height: 0px;
+  transform: translateY(var(--y));
+}
+.faq-drop-enter-end {
+  max-height: calc(-1 * var(--y));
+  transform: translateY(0px);
+}
+.faq-drop-leave {
+  transition: transform 900ms, max-height 900ms;
+  max-height: calc(-1 * var(--y));
+  transform: translateY(0);
+}
+.faq-drop-leave-start {
+  max-height: calc(-1 * var(--y));
+  transform: translateY(0);
+}
+.faq-drop-leave-end {
+  max-height: 0px;
+  transform: translateY(var(--y));
+}
