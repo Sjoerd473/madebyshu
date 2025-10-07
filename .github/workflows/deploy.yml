@@ -22,6 +22,7 @@ jobs:
           port: 22
           script: |
             cd /var/www/madebyshu
+            git config --global --add safe.directory /var/www/madebyshu
             git pull origin main
             npm install --production
             pm2 restart madebyshu
