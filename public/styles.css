@@ -577,7 +577,7 @@ header {
   }
 
   svg {
-    width: 70%;
+    width: 60%;
     height: 100%;
   }
 
@@ -1401,7 +1401,8 @@ header {
 
 .portfolio__container {
   position: relative;
-  height: 60vh;
+  min-height: 70vh;
+  margin-block-start:var(--size-300);
 }
 
 .portfolio__slide {

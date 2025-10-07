@@ -73,7 +73,7 @@
         </div>
         <div class="hero__text">
           <div class="hero__text-container">
-            <h1>Hello Plant the Seeds of Your Online Presence</h1>
+            <h1>Plant the Seeds of Your Online Presence</h1>
             <p>
               Every mission starts small—like a seed. I help purpose-driven
               individuals and organizations grow websites that reflect their
@@ -287,7 +287,7 @@
         <div class="prezzi__items">
           <template x-for="(slide,index) in slides" :key="index">
             <div
-              x-data="{ includesOpen: false, extrasOpen: false }"
+              x-data="prezziComponent()"
               x-bind:data-open="includesOpen"
               class="prezzi__item"
               :class="{ active: current === index }"
@@ -306,7 +306,7 @@
                 <h4>Includes</h4>
                 <svg
                   class="faq__arrow"
-                  @click="includesOpen = !includesOpen; rotatePrezzi($event.currentTarget)"
+                 @click="handleIncludesClick($event)"
                   width="50"
                   height="25"
                 >
@@ -343,7 +343,7 @@
               >
                 <h4>Optional Extras</h4>
                 <svg
-                  @click="extrasOpen = !extrasOpen; rotatePrezzi($event.currentTarget)"
+                 @click="handleIncludesClickExtra($event)"
                   width="50"
                   height="25"
                   class="faq__arrow"
@@ -882,166 +882,13 @@
 
    
 
-     document.addEventListener('htmx:afterSwap', (e) => {
-    if (e.target.matches('#dialog')) {
-      turnstile.render('.cf-turnstile', {
-        sitekey: '0x4AAAAAAB3zG1a4FF36sEjH'
-      });
-    }
-  });
-
-   document.addEventListener('htmx:afterSwap', () => {
-    Alpine.initTree(document.querySelector('#dialog'));
-  });
+  
 
 
 
 
 
-
-
-
-
-    function packageCarousel() {
-      return {
-        current: 0,
-        selectedPackage: '',
-        slides: [
-          {
-            svg: `<%- include('./partials/svgseed.ejs') %>`,
-            title: "Seed",
-            intro: ` For non-profit organizations, community initiatives, and grassroots
-              movements that need a meaningful online presence without the
-              complexity.`,
-            items: [
-              "3–5 page website (Home, Mission, Projects, Get Involved, Contact)",
-              `Custom design reflecting the organization’s values and story`,
-              ` Donation button or integration with platforms like PayPal, Stripe,
-                or Ko-fi`,
-              `Volunteer or contact form`,
-              `Accessibility enhancements (contrast, alt text, readable fonts)`,
-              `Basic SEO setup and social media linking`,
-              `1 hour of training or documentation for self-management`,
-            ],
-            extras: [
-              `Multilingual setup (Italian + English)`,
-              `Blog or news section`,
-              `Event calendar or petition form`,
-              `Training session for content updates `
-            ],
-            price: `€350–€600`,
-          },
-          {
-            svg: `<%- include('./partials/svgbud.ejs') %>`,
-
-            title: "Bud",
-            intro: ` For individuals, artists, and small businesses starting out.
-Simple, elegant, and personal—your first digital footprint.`,
-            items: [
-              `Up to 5 pages (Home, Services, About, Contact, Blog or Portfolio) `,
-              `Custom design tailored to brand identity`,
-              `Mobile-responsive layout`,
-              `Basic SEO & performance optimization`,
-              `Contact form integration`,
-              `Social media integration`,
-              `1 round of revisions`,
-            ],
-            extras: [
-              `Multilingual setup (Italian + English)`,
-              `Blog setup and training`,
-              `Google Analytics setup`,
-              `Event calendar or petition form`,
-            ],
-            price: `€700–€1,800`,
-          },
-          {
-            svg: `<%- include('./partials/svggrow.ejs') %>`,
-
-            title: "Growth",
-            intro: `For growing businesses or creatives ready to scale.
-More functionality, more polish, more presence.`,
-            items: [
-              `Up to 10 pages with dynamic content (e.g., blog, portfolio, testimonials) `,
-              `Custom design with creative layout elements`,
-              `Image optimization and accessibility enhancements`,
-              `Newsletter signup or social media integration`,
-              `Basic analytics setup (Google Analytics or Plausible)`,
-              `CMS training and documentation`,
-              `2 rounds of revisions`
-            ],
-            extras: [
-              `Multilingual setup (Italian + English)`,
-              `Booking or calendar integration`,
-              `E-commerce setup`,
-            ],
-            price: `€1,20–€1,800`,
-          },
-          {
-            svg: `<%- include('./partials/svgflourish.ejs') %>`,
-            title: "Flourish",
-            intro: `For established brands or ambitious projects.
-A full digital ecosystem with creative flair and strategic depth.`,
-            items: [
-              `
-                Fully custom multi-page website with advanced layout and
-                animations
-              `,
-              `Bespoke design with advanced UX/UI`,
-              `API integrations (CRM, booking systems, etc.) `,
-              `SEO-ready structure and performance tuning`,
-              `Ongoing support for 3 months post-launch`,
-              `3 rounds of revisions`,
-            ],
-            extras: [
-              `Multilingual setup (Italian + English)`,
-              `Green hosting consultation `,
-              `Custom photography or video integration`,
-            ],
-            price: `€1.500–€2.500`,
-          },
-        ],
-        next() {
-          this.current = (this.current + 1) % this.slides.length;
-        },
-
-        prev() {
-          this.current =
-            (this.current - 1 + this.slides.length) % this.slides.length;
-        },
-        getStyle(index, current) {
-          const offset = index - current;
-
-          if (offset < 0) {
-            // Cards to the left (already passed)
-            return `pointer-events:none; 
-    transform: translateX(${offset * -1000}px) scale(${1 - offset * 0.12});
-     opacity: 0 ;
-     z-index: ${index + 1};
-     filter:blur(6px)`;
-          }
-
-          if (offset === 0) {
-            // Active card
-            return "transform: translateX(0px) scale(1); opacity: 1; background: var(--card-color)";
-          }
-
-          // Cards to the right
-          return `pointer-events:none;
- 
-   transform: translate(${offset * 100}px, 0) scale(${1 - offset * 0.12});
-   background: oklch(from var(--card-color) calc(l + ${index} * var(--multiplier)) calc(c + ${index} / 10) h);
-   --x:${offset * 100}px;
-   --s:${1 - offset * 0.12};
-   --delay: ${index * 100}ms;
-   --billow: ${index * 5}px;
-    opacity: ${1 - index * 0.1};
-     filter:blur(${index}px);
-      z-index: ${index * -1};
-      `;
-        },
-      };
-    }
-  </script>
+     </script>
 </html>
 
 
