@@ -472,18 +472,30 @@
                 x-transition:leave-end="logo-leave-end"
               />
             </div>
-            <div class="portfolio__slide-images">
+                    <div
+  x-data="{ clicked: false }"
+  @click="clicked = ! clicked"
+  @click.outside="clicked = false"
+  :class="{ 'clicked': clicked }"
+  class="portfolio__slide-images"
+>
               <template x-for="(img, i) in slide.images" :key="i">
                 <img
+                x-data="{active : false}"
+                :class="{'active': active}"
                   :src="img.src"
                   :alt="img.alt"
                   :loading="img.loading"
                 :style="'--delay:' + img.delay + '; --billow:' + img.move + '; --opacity:' + img.opacity"
-
-                  class="portfolio__slide-image"
+                 @click="active = ! active"
+  @click.outside="active = false"
+                                  class="portfolio__slide-image"
                 />
               </template>
             </div>
+
+   
+
           </div>
         </template>
       </div>

@@ -1452,13 +1452,21 @@ header {
   max-width: 50%;
 
   overflow-x: clip;
+  cursor: pointer;
+
+
   &:hover {
+    
     > img {
-      animation-play-state: paused;
+      filter:grayscale(0.5);
+      max-width: 40%;
+      /* animation-play-state: paused; */
     }
     > img:not(:hover) {
-      max-width: 0%;
-      border: none;
+      max-width:20%;
+      filter:grayscale(1);
+      /* max-width: 0%; */
+      /* border: none; */
     }
   }
   > img {
@@ -1471,13 +1479,28 @@ header {
       border 300ms ease-in-out, opacity 300ms ease-in-out;
     animation: oscillate 1500ms alternate infinite ease-in-out both;
     animation-delay: var(--delay);
-    &:hover {
-      filter: grayscale(0);
-      max-width: 100%;
-      opacity: 1;
-    }
+   
   }
 }
+
+.portfolio__slide-images.clicked{
+
+  img{
+     animation-play-state: paused;
+  }
+
+  >.active{
+    max-width: 100%;
+    filter:grayscale(0);
+  }
+
+  >img:not(.active){
+    max-width: 0%;
+     border: none;
+  }
+}
+
+
 
 @keyframes oscillate {
   0% {
@@ -1485,7 +1508,7 @@ header {
   }
 
   100% {
-    transform: translate(var(--x, 0), calc(var(--billow) * -5))
+    transform: translate(var(--x, 0), calc(var(--billow) * -1))
       scale(var(--s, 1));
   }
 }
@@ -1506,13 +1529,21 @@ header {
 }
 
 .dot {
+  position: relative;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background-color: var(--color-neutral-300);
   border: none;
   cursor: pointer;
-
+&:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+}
 }
 
 .dot.active {
