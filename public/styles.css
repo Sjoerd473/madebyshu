@@ -297,12 +297,12 @@
 
   --trunk: oklch(77.115% 0.00583 2.528);
 
-  --rainbow-one: rgb(15, 53, 37);
+  --rainbow-one: violet;
   --rainbow-two: indigo;
   --rainbow-three: blue;
   --rainbow-four: green;
   --rainbow-five: yellow;
-  --rainbow-six: rgb(136, 255, 0);
+  --rainbow-six: orange;
   --rainbow-seven: red;
 }
 
