@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
+const helmet = require('helmet');
 require("dotenv").config();
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
 const crypto = require('crypto');
+app.use(helmet());
+app.enable('trust proxy');
 
 
 const indexRouter = require('./routes/indexRouter')
@@ -20,6 +23,16 @@ app.use(express.static('public', {
   maxAge: '7d',
   etag: true,
 }));
+
+
+app.use((req, res, next) => {
+
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+});
 
 
 app.use((req, res, next) => {

@@ -554,6 +554,8 @@
                @mouseenter.throttle.1500ms="boop($event.target)"
               :class="{ 'active': current === index }"
               @click="current = index"
+              :aria-label="'Go to slide ' + (i + 1)"
+
             ></button>
           </template>
         </div>
