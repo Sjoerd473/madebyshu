@@ -360,6 +360,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-10 -10 124.6 124.6"
       @click="$store.packages.closeModal()"
+      @touchstart="$store.packages.closeModal()"
       @mouseenter.throttle.1500ms="boop($event.target)"
     >
       <circle

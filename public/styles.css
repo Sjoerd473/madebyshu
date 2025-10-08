@@ -24,35 +24,43 @@
 }
 
 :root {
-  --color-neutral-100: oklch(100% 0.00011 271.152);
-  --color-neutral-300: oklch(95.735% 0.02153 83.231);
-  --color-neutral-800: oklch(17.616% 0.01019 18.057);
-  --color-neutral-900: oklch(0% 0 0);
+  --color-neutral-100: oklch(10% 0.00011 271.152);
+  --color-neutral-300: oklch(20% 0.02153 83.231);
+  --color-neutral-800: oklch(90% 0.01019 18.057);
+  --color-neutral-900: oklch(100% 0 0);
 
-  --color-primary-400: oklch(58.696% 0.15057 140.236);
-  --color-primary-800: oklch(37.481% 0.06098 149.376);
-  --color-primary-900: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
+  --color-primary-400: oklch(0.9 0.08 319.23);
+  --color-primary-800: oklch(
+    from var(--color-primary-400) calc(l - 0.2) calc(c + 0.1) h
+  );
+  --color-primary-900: oklch(
+    from var(--color-primary-400) calc(l - 0.4) calc(c + 0.2) h
+  );
 
-  --color-accent-400: oklch(46.164% 0.15883 317.443);
-  --color-accent-800: oklch(28.136% 0.08759 317.149);
+  --color-accent-400: oklch(75% 0.15883 317.443);
+  --color-accent-800: oklch(90% 0.08759 317.149);
 
-  --hero-color-original: oklch(0.23 0.08 277.35);
-  --hero-color: oklch(0.23 0.08 277.35);
+  --hero-color-original: oklch(0.85 0.08 277.35);
+  --hero-color: oklch(0.85 0.08 277.35);
 
   --text-color: var(--color-neutral-100);
-  --button-color: var(--color-primary-400);
-  --button-shadow-color: var(--color-primary-800);
-  --highlight-color: var(--color-primary-400);
+  --button-color: var(--color-primary-800);
+  --button-shadow-color: var(--color-primary-900);
+  --highlight-color: var(--color-primary-900);
 
-  --treetop-top: oklch(from var(--color-primary-400) calc(l - 0.3) c h);
-  --treetop-middle: oklch(from var(--color-primary-400) calc(l - 0.4) c h);
-  --treetop-bottom: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
+  --treetop-top: oklch(
+    from var(--color-primary-400) calc(l - 0.4) calc(c + 0.25) h
+  );
+  --treetop-middle: oklch(
+    from var(--color-primary-400) calc(l - 0.23) calc(c + 0.15) h
+  );
+  --treetop-bottom: oklch(from var(--color-primary-400) calc(l) c h);
 
-  --card-color: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
+  --card-color: oklch(from var(--color-primary-400) calc(l) calc(c) h);
 
-  --multiplier: 0.03;
+  --multiplier: -0.09;
 
-  --trunk: oklch(0.16 0.01 0);
+  --trunk: oklch(77.115% 0.00583 2.528);
 
   --rainbow-one: violet;
   --rainbow-two: indigo;
@@ -62,6 +70,8 @@
   --rainbow-six: orange;
   --rainbow-seven: red;
 
+
+ 
   --ff-primary: "Chelsea Market", system-ui;
   --ff-secondary: "Nunito", sans-serif;
 
@@ -259,43 +269,36 @@
 }
 
 [data-theme="dark"] {
-  --color-neutral-100: oklch(10% 0.00011 271.152);
-  --color-neutral-300: oklch(20% 0.02153 83.231);
-  --color-neutral-800: oklch(90% 0.01019 18.057);
-  --color-neutral-900: oklch(100% 0 0);
 
-  --color-primary-400: oklch(0.9 0.08 319.23);
-  --color-primary-800: oklch(
-    from var(--color-primary-400) calc(l - 0.2) calc(c + 0.1) h
-  );
-  --color-primary-900: oklch(
-    from var(--color-primary-400) calc(l - 0.4) calc(c + 0.2) h
-  );
+   --color-neutral-100: oklch(100% 0.00011 271.152);
+  --color-neutral-300: oklch(95.735% 0.02153 83.231);
+  --color-neutral-800: oklch(17.616% 0.01019 18.057);
+  --color-neutral-900: oklch(0% 0 0);
 
-  --color-accent-400: oklch(75% 0.15883 317.443);
-  --color-accent-800: oklch(90% 0.08759 317.149);
+  --color-primary-400: oklch(58.696% 0.15057 140.236);
+  --color-primary-800: oklch(37.481% 0.06098 149.376);
+  --color-primary-900: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
 
-  --hero-color-original: oklch(0.85 0.08 277.35);
-  --hero-color: oklch(0.85 0.08 277.35);
+  --color-accent-400: oklch(46.164% 0.15883 317.443);
+  --color-accent-800: oklch(28.136% 0.08759 317.149);
+
+  --hero-color-original: oklch(0.23 0.08 277.35);
+  --hero-color: oklch(0.23 0.08 277.35);
 
   --text-color: var(--color-neutral-100);
-  --button-color: var(--color-primary-800);
-  --button-shadow-color: var(--color-primary-900);
-  --highlight-color: var(--color-primary-900);
+  --button-color: var(--color-primary-400);
+  --button-shadow-color: var(--color-primary-800);
+  --highlight-color: var(--color-primary-400);
 
-  --treetop-top: oklch(
-    from var(--color-primary-400) calc(l - 0.4) calc(c + 0.25) h
-  );
-  --treetop-middle: oklch(
-    from var(--color-primary-400) calc(l - 0.23) calc(c + 0.15) h
-  );
-  --treetop-bottom: oklch(from var(--color-primary-400) calc(l) c h);
+  --treetop-top: oklch(from var(--color-primary-400) calc(l - 0.3) c h);
+  --treetop-middle: oklch(from var(--color-primary-400) calc(l - 0.4) c h);
+  --treetop-bottom: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
 
-  --card-color: oklch(from var(--color-primary-400) calc(l) calc(c) h);
+  --card-color: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
 
-  --multiplier: -0.09;
+  --multiplier: 0.03;
 
-  --trunk: oklch(77.115% 0.00583 2.528);
+  --trunk: oklch(0.16 0.01 0);
 
   --rainbow-one: violet;
   --rainbow-two: indigo;
@@ -305,6 +308,7 @@
   --rainbow-six: orange;
   --rainbow-seven: red;
 }
+
 
 ::view-transition-old(root) {
   animation-delay: 500ms;
@@ -1459,23 +1463,26 @@ header {
     
     > img {
       filter:grayscale(0.5);
-      max-width: 40%;
-      /* animation-play-state: paused; */
+      border:5px solid var(--button-color);
+      /* max-width: 40%; */
+      animation-play-state: paused;
     }
     > img:not(:hover) {
-      max-width:20%;
+      border:2px solid var(--text-color);
+      /* max-width:20%; */
       filter:grayscale(1);
       /* max-width: 0%; */
       /* border: none; */
     }
   }
   > img {
-    max-width: 25%;
+    min-width:25%;
+    max-width: 33%;
     border: 2px solid var(--text-color);
     object-fit: cover;
     opacity: var(--opacity, 1);
     filter: grayscale(1);
-    transition: filter 300ms ease-in-out, max-width 300ms ease-in-out,
+    transition: filter 300ms ease-in-out, max-width 300ms ease-in-out, min-width 300ms ease-in-out,
       border 300ms ease-in-out, opacity 300ms ease-in-out;
     animation: oscillate 1500ms alternate infinite ease-in-out both;
     animation-delay: var(--delay);
@@ -1486,6 +1493,8 @@ header {
 .portfolio__slide-images.clicked{
 
   img{
+
+    min-width: 0%;
      animation-play-state: paused;
   }
 
