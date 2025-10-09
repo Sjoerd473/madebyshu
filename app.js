@@ -5,8 +5,11 @@ require("dotenv").config();
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
 const crypto = require('crypto');
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
 app.enable('trust proxy');
+
 
 
 const indexRouter = require('./routes/indexRouter')
@@ -39,9 +42,25 @@ app.use((req, res, next) => {
   const nonce = crypto.randomBytes(16).toString('base64');
   res.locals.nonce = nonce;
 
-  const csp = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://challenges.cloudflare.com; connect-src 'self';`;
+const cspDirectives = [
+  `default-src 'self';`,
+  `script-src 'self' 'nonce-${nonce}' https://cdn.jsdelivr.net https://challenges.cloudflare.com;`,
+  `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;`,
+  `font-src 'self' https://fonts.gstatic.com;`,
+  `img-src 'self' data:;`,
+  `frame-src https://challenges.cloudflare.com;`,
+  `connect-src 'self' https://challenges.cloudflare.com https://api.cloudflare.com;`
+  ];
+  
 
-  res.setHeader('Content-Security-Policy', csp);
+ 
+
+
+
+const csp = cspDirectives.join(' ');
+res.setHeader('Content-Security-Policy', csp);
+
+ 
   next();
 });
 

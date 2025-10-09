@@ -57,8 +57,13 @@ const validateModule = [
 ];
 
 indexGet = async (req, res) => {
-  res.render("indexCode", { title: "Made By Shu - Web Developement" });
+  console.log(res.locals.nonce);
+  res.render("indexCode", {
+    title: "Made By Shu - Web Developement",
+    nonce: res.locals.nonce
+  });
 };
+
 
 formGet = async (req, res) => {
    

@@ -2447,6 +2447,7 @@ dialog {
 
 .modal__close-svg {
   position: absolute;
+  z-index:50;
   width: 50px;
   top: -40px;
   right: -50px;
