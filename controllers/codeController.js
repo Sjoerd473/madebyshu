@@ -165,7 +165,7 @@ const formPost = [
     }
 
     try {
-      console.log(req.body)
+      
       await db.postModule(req.body);
 
     //   await transporter.sendMail(mail.replyModule(req.body));
