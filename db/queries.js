@@ -2,6 +2,18 @@ const pool = require("./pool");
 
 async function postModule(data) {
 
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS messages (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      firstName VARCHAR(30),
+      lastName VARCHAR(30),
+      email VARCHAR(40),
+      package VARCHAR(20),
+      message TEXT,
+      sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
   await pool.query(
     `INSERT INTO messages (
       id,
@@ -17,15 +29,6 @@ async function postModule(data) {
     [data.firstName, data.lastName, data.email, data.package, data.message]
   );
 }
-(async () => {
-  try {
-    const res = await pool.query('SELECT current_database(), current_user');
-    console.log('Connected to DB:', res.rows[0].current_database);
-    console.log('Connected as user:', res.rows[0].current_user);
-  } catch (err) {
-    console.error('DB connection check failed:', err);
-  }
-})();
 
 
 
