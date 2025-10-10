@@ -9,6 +9,9 @@ module.exports = new Pool({
     port: Number(process.env.DB_PORT)
 });
 
-
-
-
+console.log({
+  host: process.env.HOST,
+  user: process.env.USER,
+  database: process.env.DATABASE,
+  port: process.env.DB_PORT
+});

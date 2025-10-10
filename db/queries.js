@@ -1,6 +1,6 @@
 const pool = require("./pool");
 
-console.log(pool)
+
 
 async function postModule(data) {
 
