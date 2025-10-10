@@ -57,7 +57,7 @@ const validateModule = [
 ];
 
 indexGet = async (req, res) => {
-  console.log(res.locals.nonce);
+
   res.render("indexCode", {
     title: "Made By Shu - Web Developement",
     nonce: res.locals.nonce
