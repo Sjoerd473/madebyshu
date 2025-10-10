@@ -1,5 +1,7 @@
 const pool = require("./pool");
 
+console.log(pool)
+
 async function postModule(data) {
 
   await pool.query(`
