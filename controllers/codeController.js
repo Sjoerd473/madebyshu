@@ -9,24 +9,24 @@ const resend = new Resend(process.env.RESEND_KEY);
 
 
 
-let transporter;
+// let transporter;
 
-async function mailSetter() {
+// async function mailSetter() {
 
-transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.MAIL,
-    pass: process.env.MAILPASS,
-  },
-  secure: false,
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+// transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.MAIL,
+//     pass: process.env.MAILPASS,
+//   },
+//   secure: false,
+//   tls: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
-}
-mailSetter()
+// }
+// mailSetter()
 
 const validateModule = [
   body("firstName")
@@ -169,21 +169,31 @@ const formPost = [
       });
     }
 
-    try {
-      await db.postModule(req.body);
+try {
+  await db.postModule(req.body);
+  console.log('DB insert successful');
 
-      const emailPayload = mail.replyModule(req.body);
-      const result = await resend.emails.send(emailPayload);
+  const emailPayload = mail.replyModule(req.body);
+  console.log('Email payload:', emailPayload);
 
-      if (result.error) {
-        console.error('Resend error:', result.error);
-        return res.status(500).send('Failed to send email');
-      }
-      res.render('./partials/formResponse');
-    } catch (err) {
-      console.error('Processing error:', err);
-      res.status(500).send('Failed to process form');
-    }
+  const result = await resend.emails.send(emailPayload);
+
+  if (result.error) {
+    console.error('Resend error:', result.error);
+    return res.status(500).send('Failed to send email');
+  }
+
+  if (!result.data || !result.data.id) {
+    console.error('Resend returned no data:', result);
+    return res.status(500).send('Email not sent');
+  }
+
+  console.log('Email sent successfully:', result.data);
+  res.render('./partials/formResponse');
+} catch (err) {
+  console.error('Processing error:', err);
+  res.status(500).send('Failed to process form');
+}
   },
 ];
 
