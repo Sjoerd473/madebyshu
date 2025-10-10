@@ -4,6 +4,9 @@ const axios = require('axios');
 
 const nodemailer = require("nodemailer");
 const mail = require('../services/mail.js')
+const { Resend } = require('resend');
+const resend = new Resend(process.env.RESEND_KEY);
+
 
 
 let transporter;
@@ -167,11 +170,15 @@ const formPost = [
     }
 
     try {
-      
       await db.postModule(req.body);
 
-      await transporter.sendMail(mail.replyModule(req.body));
+      const emailPayload = mail.replyModule(req.body);
+      const result = await resend.emails.send(emailPayload);
 
+      if (result.error) {
+        console.error('Resend error:', result.error);
+        return res.status(500).send('Failed to send email');
+      }
       res.render('./partials/formResponse');
     } catch (err) {
       console.error('Processing error:', err);

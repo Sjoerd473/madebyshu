@@ -1,27 +1,23 @@
 const replyModule = (body) => {
-  const from = "Myself <no-reply@example.com>";
-  const to = `info@madebyshu.net`;
-  const subject = `New message from website`;
+  const from = 'info@madebyshu.net'; // must be verified in Resend
+  const to = 'fattodashu@gmail.com';
+  const subject = 'New message from website';
 
-  {
-        const html = `<p>Nome: ${body.firstName} ${body.lastName} </p>
+  const html = `
+    <p>Nome: ${body.firstName} ${body.lastName}</p>
     <p>Email: ${body.email}</p>
     <p>Pachetto: ${body.package}</p>
-                <p>Message:</p>
-                 <p> ${body.message}</p>`;
+    <p>Message:</p>
+    <p>${body.message}</p>
+  `;
 
-
-    return {
-      from: from,
-      to: to,
-      subject: subject,
-      text: "HTML failure",
-      html: html,
-    };
-  }
+  return {
+    from,
+    to,
+    subject,
+    text: 'HTML fallback',
+    html,
+  };
 };
 
-
-module.exports = {
-    replyModule
-}
+module.exports = { replyModule };
