@@ -10,16 +10,18 @@ let transporter;
 
 async function mailSetter() {
 
- 
- 
-  transporter =  nodemailer.createTransport({
+transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.MAIL,
+    pass: process.env.MAILPASS,
+  },
+  secure: false,
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
 
-    service: "gmail",
-    auth: {
-      user: process.env.MAIL,
-      pass: process.env.MAILPASS  ,
-    },
-  });
 }
 mailSetter()
 
