@@ -1,23 +1,21 @@
 require('dotenv').config();
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.MAIL,
-    pass: process.env.MAILPASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_KEY);
 
-transporter.sendMail({
-  from: process.env.MAIL,
-  to: 'info@madebyshu.net',
-  subject: 'Test Email from VPS',
-  text: 'This is a test.',
-}, (err, info) => {
-  if (err) {
+async function sendTestEmail() {
+  try {
+    const response = await resend.emails.send({
+      from: 'infoy@madebyshu.net', // must be a verified domain sender
+      to: 'fattodashu@gmail.com',
+      subject: 'Test Email from VPS',
+      text: 'This is a test.',
+    });
+
+    console.log('Success:', response);
+  } catch (err) {
     console.error('Failed:', err);
-  } else {
-    console.log('Success:', info.response);
   }
-});
+}
+
+sendTestEmail();
