@@ -168,7 +168,7 @@ const formPost = [
       
       await db.postModule(req.body);
 
-    //   await transporter.sendMail(mail.replyModule(req.body));
+      await transporter.sendMail(mail.replyModule(req.body));
 
       res.render('./partials/formResponse');
     } catch (err) {
