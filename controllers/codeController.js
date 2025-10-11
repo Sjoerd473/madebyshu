@@ -133,6 +133,7 @@ const formPost = [
   validateModule,
   async (req, res, next) => {
     const token = req.body['cf-turnstile-response'];
+    console.log('hello post')
 
     if (!token) {
       return res.status(400).send('No Turnstile token provided');
