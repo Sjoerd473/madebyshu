@@ -1463,7 +1463,7 @@ header {
     
     > img {
       filter:grayscale(0.5);
-      border:5px solid var(--button-color);
+      border:3px solid var(--button-color);
       /* max-width: 40%; */
       animation-play-state: paused;
     }
@@ -2172,11 +2172,11 @@ header {
 }
 
 :root[data-theme="dark"] .faq {
-  background-image: url("../alberolight.svg");
+  background-image: url("../alberodark.svg");
 }
 
 :root[data-theme="light"] .faq {
-  background-image: url("../alberodark.svg");
+  background-image: url("../alberolight.svg");
 }
 
 .bgtest {

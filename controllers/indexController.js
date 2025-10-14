@@ -6,17 +6,33 @@ privacyGet = async (req, res) => {
 }
 cookieGet = async (req, res) => {
     
-    res.render('cookie', {title: 'Made by Shu - Cookies'})
+    res.render('cookies', {title: 'Made by Shu - Cookies'})
+}
+privacyEnGet = async (req, res) => {
+    
+    res.render('privacyEn', {title: 'Made by Shu - Privacy'})
+}
+cookieEnGet = async (req, res) => {
+    
+    res.render('cookiesEn', {title: 'Made by Shu - Cookies'})
 }
 
 indexGet = async (req, res) => {
   
-    // res.render('index', {title: 'Made By Shu'})
+    
     res.redirect('/webdev')
+}
+indexEnGet = async (req, res) => {
+  
+    
+    res.redirect('en/webdev')
 }
 
 module.exports = {
     privacyGet,
+    privacyEnGet,
     cookieGet,
-    indexGet
+    cookieEnGet,
+    indexGet,
+    indexEnGet
 }

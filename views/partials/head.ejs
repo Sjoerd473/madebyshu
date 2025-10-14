@@ -4,16 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <meta name="author" content="Sjoerd Brussee" />
-    <meta name="description" content="Brief description" />
-
-    <meta property="og:title" content="Your Page Title" />
-    <meta property="og:description" content="Brief description" />
-    <meta property="og:image" content="/some-image.png" />
-    <meta property="og:url" content="/this-page.html" />
-    <meta property="og:site_name" content="Your Site Name" />
+ <meta name="description" content="I build websites with care, clarity, and creativity—fast, interactive, and designed to grow with your mission. Powered by HTMX, Alpine.js, Node.js, and WordPress." />
+ <meta name="keywords" content="creative web developer, websites built with care, HTMX developer, Alpine.js developer, Node.js development, WordPress expert, freelance web design Italy, interactive websites, purpose-driven web development" />
+    <meta property="og:title" content="Made By Shu - Web Developement & Design" />
+   <meta property="og:description" content="Websites built with care, clarity, and creativity—fast, interactive, and designed to grow with your mission." />
+    <meta property="og:image" content= "https://madebyshu.net/public/social-madebyshu.png" />
+  <meta property="og:url" content="https://madebyshu.net/webdev" />
+    <meta property="og:site_name" content="Made By Shu - Web Developement & Design" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image:alt" content="image description" />
-  
+  <meta name="twitter:image" content="https://madebyshu.net/public/social-madebyshu.png" />
+<meta name="twitter:image:alt" content="Preview of Made by Shu’s web development services" />
+<link rel="canonical" href="https://madebyshu.net/webdev" />
 
     <link href="/styles.css" rel="stylesheet" />
 <script nonce="<%= nonce %>">
@@ -22,6 +23,40 @@
   const theme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   console.log(theme)
   document.documentElement.setAttribute("data-theme", theme);
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sjoerd Brussee",
+  "url": "https://madebyshu.net",
+  "image": "https://madebyshu.net/public/social-madebyshu.png",
+  "jobTitle": "Freelance Web Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Made By Shu",
+    "url": "https://madebyshu.net"
+  },
+  "description": "I build websites with care, clarity, and creativity—fast, interactive, and designed to grow with your mission. Powered by HTMX, Alpine.js, Node.js, and WordPress.",
+  "knowsAbout": [
+    "HTMX",
+    "Alpine.js",
+    "Node.js",
+    "WordPress",
+    "Frontend UX",
+    "Backend integration",
+    "Web performance",
+    "Security headers",
+    "Creative facilitation"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Verona",
+    "addressCountry": "Italy"
+  },
+  "sameAs": []
+}
 </script>
 
 
