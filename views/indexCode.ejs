@@ -338,7 +338,7 @@
                 class="prezzi__tab"
                 @mouseenter.throttle.1500ms="boop($event.target.querySelector('.faq__arrow'))"
               >
-                <h4>Includes</h4>
+                <h4>Include</h4>
                 <svg
                   class="faq__arrow"
                   @click="handleIncludesClick($event)"
@@ -370,14 +370,14 @@
                   </template>
                 </ul>
                 <p class="list-price">
-                  Estimated cost: <span x-text="slide.price"></span>
+                  Prezzo stimato: <span x-text="slide.price"></span>
                 </p>
               </div>
               <div
                 class="prezzi__tab"
                 @mouseenter.throttle.1500ms="boop($event.target.querySelector('.faq__arrow'))"
               >
-                <h4>Optional Extras</h4>
+                <h4>Optionals</h4>
                 <svg
                   @click="handleIncludesClickExtra($event)"
                   width="50"
@@ -839,7 +839,7 @@ online, mi piacerebbe conoscere la tua storia e aiutarti a darle vita.
           >
             <span class="shadow"></span>
             <span class="edge"></span>
-            <span class="front"> Contact me! </span>
+            <span class="front"> Contattami! </span>
           </button>
         </div>
         <!-- <div class="faq__container">
