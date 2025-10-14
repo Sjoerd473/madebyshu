@@ -2,31 +2,14 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const axios = require('axios');
 
-const nodemailer = require("nodemailer");
+
 const mail = require('../services/mail.js')
 const { Resend } = require('resend');
 const resend = new Resend(process.env.RESEND_KEY);
 
 
 
-// let transporter;
 
-// async function mailSetter() {
-
-// transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     user: process.env.MAIL,
-//     pass: process.env.MAILPASS,
-//   },
-//   secure: false,
-//   tls: {
-//     rejectUnauthorized: false,
-//   },
-// });
-
-// }
-// mailSetter()
 
 const validateModule = [
 body("firstName")
