@@ -80,6 +80,12 @@ app.set("view engine", "ejs");
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  console.log('Incoming:', req.method, req.url);
+  next();
+});
+
+
 app.use('/webdev', codeRouter);
 app.use('/', indexRouter);
 
