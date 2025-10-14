@@ -1528,7 +1528,20 @@ header {
 .slide__text {
   margin-block: var(--size-400);
   font-size: var(--size-300);
+
+  a{
+    transition: color 250ms;
+  }
+
+  p{
+    margin-block: inherit;
+  }
+  a:hover{
+    color:var(--highlight-color);
+  }
 }
+
+
 
 .carousel__dots {
   display: flex;
@@ -1789,12 +1802,22 @@ header {
     margin-block: var(--size-400);
     font-size: var(--size-400);
   }
+
+  
+  a{
+    transition: color 250ms;
+  }
+
+
+  a:hover{
+    color:var(--highlight-color);
+  }
 }
 
 .prezzi__items {
   --border-radius: 20px;
   --button-font-size: var(--size-300);
-  --button-width: 100px;
+  --button-width: 200px;
   --button-height: 50px;
   position: relative;
   display: flex;
@@ -2087,8 +2110,8 @@ header {
       max-height: 36px;
     }
     > a {
-      text-decoration: none;
-      font-size: var(--size-300);
+      
+      font-size: var(--size-400);
     }
   }
 
@@ -2100,6 +2123,7 @@ header {
 
 .contatti__details-row {
   a {
+   
     text-decoration: underline;
     text-decoration-color: transparent;
     text-decoration-thickness: 0px;
@@ -2171,6 +2195,14 @@ header {
  
 }
 
+@media (width < 600px) {
+
+  .faq{
+    background-position: right bottom 125px;
+  }
+  
+}
+
 :root[data-theme="dark"] .faq {
   background-image: url("../alberodark.svg");
 }
@@ -2187,6 +2219,8 @@ header {
 
 @media (width < 808px) {
   .contatti__container {
+    padding-block-start:5rem;
+
     > div {
       max-width: 100%;
     }

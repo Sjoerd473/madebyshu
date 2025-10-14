@@ -29,36 +29,36 @@ const resend = new Resend(process.env.RESEND_KEY);
 // mailSetter()
 
 const validateModule = [
-  body("firstName")
-    .trim()
-    .notEmpty()
-    .isLength({ min: 2, max: 30 })
-    .withMessage("First name must be between 2 and 30 characters")
-    .matches(/^[a-zA-ZÀ-ÿ\s'-]+$/)
-    .withMessage("First name contains invalid characters")
-    .escape(),
+body("firstName")
+.trim()
+.notEmpty()
+.isLength({ min: 2, max: 30 })
+.withMessage("Il nome deve essere compreso tra 2 e 30 caratteri")
+.matches(/^[a-zA-ZÀ-ÿ\s'-]+$/)
+.withMessage("Il nome contiene caratteri non validi")
+.escape(),
 
-  body("lastName")
-    .trim()
-    .notEmpty()
-    .isLength({ min: 2, max: 30 })
-    .withMessage("Last name must be between 2 and 30 characters")
-    .matches(/^[a-zA-ZÀ-ÿ\s'-]+$/)
-    .withMessage("Last name contains invalid characters")
-    .escape(),
+body("lastName")
+.trim()
+.notEmpty()
+.isLength({ min: 2, max: 30 })
+.withMessage("Il cognome deve essere compreso tra 2 e 30 caratteri")
+.matches(/^[a-zA-ZÀ-ÿ\s'-]+$/)
+.withMessage("Il cognome contiene caratteri non validi")
+.escape(),
 
-    body("email")
-        .trim()
-        .isEmail()
-        .withMessage(`Email address invalid`)
-        .normalizeEmail(),
-  body("message")
-    .trim()
-    .escape()
-    .isLength({ min: 10, max: 1000 })
-    .withMessage("Message must be between 10 and 1000 characters")
-    .matches(/^[^<>]*$/)
-    .withMessage("Message cannot contain angle brackets or HTML tags"),
+body("email")
+.trim()
+.isEmail()
+.withMessage(`Indirizzo email non valido`)
+.normalizeEmail(),
+body("message")
+.trim()
+.escape()
+.isLength({ min: 10, max: 1000 })
+.withMessage("Il messaggio deve essere lungo tra 10 e 1000 caratteri")
+.matches(/^[^<>]*$/)
+.withMessage("Il messaggio non può contenere parentesi angolari o tag HTML"),
 ];
 const validateModuleEn = [
   body("firstName")
@@ -222,7 +222,7 @@ const formEnPost = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors.array());
-      return res.render('./partials/modalerror', {
+      return res.render('./partials/modalerrorEn', {
         errors: errors.array(),
       });
     }
@@ -247,7 +247,7 @@ try {
   }
 
   console.log('Email sent successfully:', result.data);
-  res.render('./partials/formResponse');
+  res.render('./partials/formResponseEn');
 } catch (err) {
   console.error('Processing error:', err);
   res.status(500).send('Failed to process form');

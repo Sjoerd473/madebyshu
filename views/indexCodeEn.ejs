@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
-  <%- include('./partials/head.ejs') %>
+<html lang="en">
+  <%- include('./partials/headEn.ejs') %>
 
   <body class="content-grid">
-    <%- include('./partials/header.ejs') %>
+    <%- include('./partials/headerEn.ejs') %>
     <section id="hero" class="full-width hero">
       <div class="hero__container | full-width">
         <div class="hero__images">
@@ -73,16 +73,17 @@
         </div>
         <div class="hero__text">
           <div class="hero__text-container">
-            <h1>Pianta i semi della tua presenza online</h1>
+            <h1>Plant the Seeds of Your Online Presence</h1>
             <p>
-              Ogni missione inizia in piccolo, come un seme. Aiuto individui e
-              organizzazioni motivati a realizzare siti web che riflettano i
-              loro valori, con guida, creatività e cura fin dal primo germoglio.
+              Every mission starts small—like a seed. I help purpose-driven
+              individuals and organizations grow websites that reflect their
+              values, with guidance, creativity, and care from the very first
+              sprout.
             </p>
             <a class="pushable" href="/webdev/#perche">
               <span class="shadow"></span>
               <span class="edge"></span>
-              <span class="front"> Cresciamo! </span>
+              <span class="front"> Let's Start Growing! </span>
             </a>
           </div>
         </div>
@@ -126,127 +127,120 @@
       <div class="perche__container | breakout">
         <%- include('./partials/svgseed.ejs') %>
 
-        <h3 x-intersect.once="seed()" class="perche__subheader">Seminare</h3>
-        <p>Dove la fiducia mette radici</p>
+        <h3 x-intersect.once="seed()" class="perche__subheader">Sow</h3>
+        <p>Where Trust Takes Root</p>
         <div x-intersect.once="slidein($el)" class="perche__cards-one | flex">
           <div class="perche__card">
-            <h4 class="subsection__header">Piantato con uno scopo</h4>
+            <h4 class="subsection__header">Planted with Purpose</h4>
             <p>
-              Non mi occupo di cose generiche. Ogni sito inizia con la tua
-              storia, i tuoi valori e i tuoi obiettivi, quindi ciò che creiamo
-              insieme ti sembra autentico.
+              I don’t do generic. Every site begins with your story, your
+              values, and your goals—so what we grow together feels true to you.
             </p>
           </div>
           <div class="perche__card">
-            <h4 class="subsection__header">Un inizio dolce</h4>
+            <h4 class="subsection__header">A Gentle Start</h4>
             <p>
-              Nessuna pressione, nessuna oppressione. Ti guido attraverso il
-              processo con chiarezza e calma, così ti sentirai supportato fin
-              dal primo giorno.
+              No pressure, no overwhelm. I guide you through the process with
+              clarity and calm, so you feel supported from day one.
             </p>
           </div>
 
           <div class="perche__card">
-            <h4 class="subsection__header">Etico per natura</h4>
+            <h4 class="subsection__header">Ethical by Nature</h4>
             <p>
-              Utilizzo strumenti sostenibili, codice pulito e scelte progettuali
-              ponderate, perché il modo in cui costruiamo è importante tanto
-              quanto ciò che costruiamo.
+              I use sustainable tools, clean code, and thoughtful design
+              choices—because how we build matters just as much as what we
+              build.
             </p>
           </div>
         </div>
 
         <%- include('./partials/svggrow.ejs') %>
-        <h3 x-data x-intersect.once="grow()" class="perche__subheader">
-          Crescere
-        </h3>
-        <p>Dove le idee prendono forma</p>
+        <h3 x-data x-intersect.once="grow()" class="perche__subheader">Grow</h3>
+        <p>Where Ideas Unfold</p>
         <div x-intersect.once="slidein($el)" class="perche__cards-two | flex">
           <div class="perche__card">
             <h4 class="subsection__header">
-              Una struttura che supporta la tua voce
+              Structure That Supports Your Voice
             </h4>
             <p>
-              Ti aiuto a organizzare le tue idee, a dare forma al tuo messaggio
-              e a creare un sito che parli con chiarezza e attenzione.
+              I help you organize your ideas, shape your message, and create a
+              site that speaks with clarity and care.
             </p>
           </div>
 
           <div class="perche__card">
-            <h4 class="subsection__header">Design che respira</h4>
+            <h4 class="subsection__header">Design That Breathes</h4>
             <p>
-              Il tuo sito dovrebbe essere vivo. Bilanciamo creatività e
-              usabilità, in modo che i visitatori si sentano benvenuti e il tuo
-              messaggio arrivi a destinazione.
+              Your site should feel alive. I balance creativity with usability,
+              so visitors feel welcomed and your message lands.
             </p>
           </div>
 
           <div class="perche__card">
             <h4 class="subsection__header">
-              Reattivo, affidabile, radicato nell'assistenza
+              Responsive, Reliable, Rooted in Care
             </h4>
             <p>
-              Sono veloce a rispondere, facile da gestire e sempre trasparente.
-              Non rimarrai mai nel dubbio o nell'attesa.
+              I’m quick to respond, easy to work with, and always transparent.
+              You’ll never be left guessing or waiting.
             </p>
           </div>
         </div>
 
         <%- include('./partials/svgflourish.ejs') %>
         <h3 x-data x-intersect.once="flourish()" class="perche__subheader">
-          Fiorire
+          Flourish
         </h3>
-        <p>Dove sboccia il significato</p>
+        <p>Where Meaning Blossoms</p>
         <div x-intersect.once="slidein($el)" class="perche__cards-three | flex">
           <div class="perche__card">
             <h4 class="subsection__header">
-              Pensato per piccoli team con una grande visione
+              Made for Small Teams with Big Vision
             </h4>
             <p>
-              Sono specializzato in fondatori individuali e piccole
-              organizzazioni. Capisco il vostro mondo e creo sistemi che
-              supportano la vostra crescita.
+              I specialize in solo founders and small organizations. I
+              understand your world and build systems that support your growth.
             </p>
           </div>
 
           <div class="perche__card">
-            <h4 class="subsection__header">Inclusivo per progettazione</h4>
+            <h4 class="subsection__header">Inclusive by Design</h4>
             <p>
-              Costruisco con accessibilità, trasparenza e pratiche tecnologiche
-              etiche in modo che il vostro sito rifletta i vostri valori e
-              accolga tutti.
+              I build with accessibility, transparency, and ethical tech
+              practices—so your site reflects your values and welcomes everyone.
             </p>
           </div>
 
           <div class="perche__card">
             <h4 class="subsection__header">
-              Uno spazio digitale che ti fa sentire a casa
+              A Digital Space That Feels Like Home
             </h4>
             <p>
-              Il tuo sito web dovrebbe rispecchiare te. Creo spazi tranquilli,
-              autentici e stimolanti, così puoi concentrarti sulla tua missione,
-              non sulle meccaniche.
+              Your website should feel like you. I create spaces that are calm,
+              authentic, and empowering—so you can focus on your mission, not
+              the mechanics.
             </p>
           </div>
         </div>
       </div>
     </section>
-    <section x-data="packageCarousel()" id="prezzi" class="prezzi full-width">
-      <%- include('./partials/modalform.ejs') %>
+    <section x-data="packageCarouselEn()" id="prezzi" class="prezzi full-width">
+      <%- include('./partials/modalformEn.ejs') %>
 
       <div class="prezzi__container | breakout">
         <div class="prezzi__text">
-          <h2 class="section__header">Come funziona</h2>
+          <h2 class="section__header">How It Works</h2>
           <p>
-            Ogni progetto inizia con una conversazione. I pacchetti che vedete
-            qui sono punti di partenza: semi, gemme e fiori per aiutarvi a
-            immaginare cosa è possibile. Ma proprio come non esistono due
-            giardini uguali, non dovrebbero esserlo nemmeno due siti web.
+            Every project starts with a conversation. The packages you see here
+            are starting points—seeds, buds, and blossoms to help you imagine
+            what’s possible. But just like no two gardens are the same, no two
+            websites should be either.
           </p>
           <p>
-            Se non sei sicuro di quale forma dovrebbe avere il tuo sito, quali
-            colori, tono, struttura o anche quale storia vuoi raccontare, offro
-            un servizio di facilitazione in collaborazione con
+            If you’re not sure what shape your site should take—what colors,
+            tone, structure, or even what story you want to tell—I offer a
+            facilitation service in collaboration with
             <span
               x-data="sparkleComponent()"
               x-intersect:enter="start()"
@@ -272,20 +266,21 @@
                 >Spazio Gaia.</a
               >
             </span>
-            Insieme, ti guidiamo attraverso un processo creativo per scoprire la
-            tua visione, i tuoi valori e la tua voce. Non si tratta solo di
-            design, ma di scoperta.
+            Together, we guide you through a creative process to uncover your
+            vision, values, and voice. It’s not just about design—it’s about
+            discovery.
           </p>
           <p>
-            Creo ogni sito con cura, adattandolo alla tua storia, ai tuoi
-            obiettivi e al tuo ritmo. Se nessuno di questi pacchetti ti sembra
-            adatto, non preoccuparti. Sono sempre felice di combinare, abbinare
-            e personalizzare qualcosa solo per te.
+            I craft each site with care, adapting to your story, your goals, and
+            your rhythm. If none of these packages feel quite right, that’s
+            okay. I’m always happy to mix, match, and tailor something just for
+            you.
           </p>
           <p>
-            Creiamo insieme qualcosa che si adatti, non solo al tuo budget, ma
-            anche alla tua visione.
+            Let’s co-create something that fits—not just your budget, but your
+            vision.
           </p>
+
           <div class="prezzi__buttons">
             <svg
               class="prev hover__color"
@@ -414,7 +409,7 @@
               >
                 <span class="shadow"></span>
                 <span class="edge"></span>
-                <span class="front"> Sono interessato/a </span>
+                <span class="front"> I am interested </span>
               </button>
             </div>
           </template>
@@ -422,24 +417,25 @@
       </div>
     </section>
     <section id="aboutme" class="aboutme | full-width">
-      <h2 class="section__header">Chi sono</h2>
+      <h2 class="section__header">About Me</h2>
       <%- include('./partials/svgaboutme.ejs') %>
       <div class="aboutme__flex | full-width">
         <div class="aboutme__text card">
-          <h3 class="subsection__header">Shu</h3>
-
-        <p>
-Nella mia vita ho avuto l'opportunità di ricoprire molti ruoli diversi,
-tra cui quello di web designer e sviluppatore ora occupa
-il centro della scena.
-</p>
-<p>
-Le diverse esperienze che ho maturato nel corso degli anni mi hanno mostrato
-l'importanza di trovare ed esprimere la propria voce. Questo,
-insieme alla mia passione per la sostenibilità, la creatività e
-il minimalismo, ora lo esprimo nel lavoro che svolgo progettando e realizzando
-siti web.
-</p>
+          <h3 class="subsection__header">Something</h3>
+          
+            <p>
+              In my life I have had the opportunity to wear many different hats,
+              of which the one of web designer and developer now takes center
+              stage.
+            </p>
+             <p>
+               The varied experiences I have had in my years have shown me
+                           the importance of finding and expressing one’s own voice. This,
+                           intertwined with my passion for sustainability, creativity and
+                           minimalism, I now express in the work I do designing and creating
+                           websites.
+             </p>
+          
         </div>
         <div class="card">
           <img
@@ -448,19 +444,19 @@ siti web.
             alt="The alpinejs and HTMX logo together"
           />
           <h3 class="subsection__header">Alpinejs + HTMX</h3>
-        <p>
-Questi due strumenti lavorano insieme per creare siti web veloci e interattivi
-senza l'ingombro dei framework JavaScript tradizionali.
-</p>
-<p>
-htmx mi permette di aggiungere comportamenti dinamici direttamente in HTML, come il caricamento
-di contenuti senza ricaricare l'intera pagina, mentre Alpine.js offre componenti reattivi
-con codice minimo.
-</p>
-<p>
-Il risultato? Un'esperienza utente scattante, un impatto ambientale ridotto e
-un codice pulito e facile da gestire.
-</p>
+          <p>
+            These two tools work together to create fast, interactive websites
+            without the bulk of traditional JavaScript frameworks.
+          </p>
+          <p>
+            htmx lets me add dynamic behavior directly in HTML—like loading
+            content without full page reloads—while Alpine.js brings reactive
+            components with minimal code.
+          </p>
+          <p>
+            The result? A snappy user experience, lower carbon footprint, and
+            clean code that’s easy to maintain.
+          </p>
         </div>
         <div class="card">
           <img
@@ -471,18 +467,18 @@ un codice pulito e facile da gestire.
           <h3 class="subsection__header">Node.js</h3>
 
           <p>
-Node.js mi permette di creare applicazioni lato server scalabili ed efficienti
-utilizzando JavaScript.
-</p>
-<p>
-Che si tratti di gestire l'invio di moduli, gestire database o
-alimentare API personalizzate, Node.js mi offre la flessibilità necessaria per creare
-soluzioni che crescono con le vostre esigenze.
-</p>
-<p>
-È veloce, moderno e ideale per progetti che richiedono più di
-un semplice front-end accattivante.
-</p>
+            Node.js allows me to build scalable, efficient server-side
+            applications using JavaScript.
+          </p>
+          <p>
+            Whether it’s handling form submissions, managing databases, or
+            powering custom APIs, Node.js gives me the flexibility to craft
+            solutions that grow with your needs.
+          </p>
+          <p>
+            It’s fast, modern, and ideal for projects that require more than
+            just a pretty front-end.
+          </p>
         </div>
         <div class="card">
           <img
@@ -492,21 +488,22 @@ un semplice front-end accattivante.
           />
           <h3 class="subsection__header">Wordpress</h3>
           <p>
-Per i clienti che desiderano il pieno controllo sui propri contenuti, WordPress è una
-scelta affidabile. È perfetto per blog, portfolio e siti di piccole
-imprese.
-</p>
-<p>
-Personalizzo i temi WordPress in base al tuo brand, ottimizzo
-le prestazioni e mi assicuro che il tuo sito sia facile da aggiornare, senza bisogno di competenze tecniche.
-Inoltre, supporta le migliori pratiche di hosting sostenibile e accessibilità.
-</p>
+            For clients who want full control over their content, WordPress is a
+            trusted choice. It’s perfect for blogs, portfolios, and small
+            business sites.
+          </p>
+          <p>
+            I customize WordPress themes to match your brand, optimize
+            performance, and ensure your site is easy to update—no tech skills
+            required. Plus, it supports sustainable hosting and accessibility
+            best practices.
+          </p>
         </div>
       </div>
 
       <%- include('./partials/svgaboutme.ejs') %>
     </section>
-    <section x-data="carousel()" id="portfolio" class="full-width portfolio">
+    <section x-data="carouselEn()" id="portfolio" class="full-width portfolio">
       <h2 class="section__header">Portfolio</h2>
       <div class="portfolio__container breakout">
         <template x-for="(slide,index) in slides" :key="index">
@@ -776,14 +773,23 @@ Inoltre, supporta le migliori pratiche di hosting sostenibile e accessibilità.
          
         </button> -->
         <div x-data class="contatti__details">
-         <h3 class="subsection__header">
-Coltiviamo insieme qualcosa di significativo.
-</h3>
-<p>
-Che tu stia piantando il tuo primo seme digitale o che tu sia pronto a prosperare
-online, mi piacerebbe conoscere la tua storia e aiutarti a darle vita.
-</p>
-   
+          <h3 class="subsection__header">
+            Let’s grow something meaningful together.
+          </h3>
+          <p>
+            Whether you’re planting your first digital seed or ready to flourish
+            online, I’d love to hear your story and help bring it to life.
+          </p>
+          <!-- <div 
+          class="contatti__details-row"
+            @mouseenter.throttle.1500ms="boop($event.target.querySelector('.point__svg'))">
+            <svg xmlns="http://www.w3.org/2000/svg" class="point__svg" viewBox="0 0 74.29 103.95">
+
+ 
+    <path d="M68.91,18.5C63.54,9.82,51.35.4,36.73.5c-14.33.1-26.35,9.3-31.63,18-11.99,19.78-.36,55.52,32.75,84.78,32.35-29.27,43.31-64.99,31.06-84.78ZM37.15,54.01c-9.67,0-17.51-7.84-17.51-17.51s7.84-17.5,17.51-17.5,17.5,7.83,17.5,17.5-7.83,17.51-17.5,17.51Z"/>
+  
+</svg>
+            <a href="">Via Bernini Buri 99, Verona</a></div> -->
           <div
             class="contatti__details-row"
             @mouseenter.throttle.1500ms="boop($event.target.querySelector('.mail__svg'))"
@@ -973,7 +979,7 @@ online, mi piacerebbe conoscere la tua storia e aiutarti a darle vita.
           </div>
         </div> -->
       </div>
-      <%- include('./partials/footer.ejs') %>
+      <%- include('./partials/footerEn.ejs') %>
     </section>
   </body>
 

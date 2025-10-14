@@ -6,7 +6,7 @@
         type="text"
         id="firstName"
         name="firstName"
-        placeholder="Nome"
+        placeholder="First Name"
         required
       />
       <label for="lastName"></label>
@@ -14,7 +14,7 @@
         type="text"
         id="lastName"
         name="lastName"
-        placeholder="Cognome"
+        placeholder="Last Name"
         required
       />
     </div>
@@ -39,36 +39,36 @@
         <option value="flourish">Flourish</option>
       </select> -->
 
-    <p>Sono interessato/a a:</p>
+    <p>I am interested in:</p>
     <div class="boxes">
       <label>
         <input type="radio" name="package" value="seed" />
         <div class="form-seed box">
-          <span>Seminare</span>
+          <span>Seed</span>
         </div>
       </label>
       <label>
         <input type="radio" name="package" value="bud" />
         <div class="form-bud box">
-          <span>Nascere</span>
+          <span>Bud</span>
         </div>
       </label>
       <label>
         <input type="radio" name="package" value="growth" />
         <div class="form-growth box">
-          <span>Crescere</span>
+          <span>Growth</span>
         </div>
       </label>
       <label>
         <input type="radio" name="package" value="flourish" />
         <div class="form-flourish box">
-          <span>Fiorire</span>
+          <span>Flourish</span>
         </div>
       </label>
     </div>
 
     <label for="message"></label>
-    <textarea name="message" id="message" placeholder="Tuo messaggio"></textarea>
+    <textarea name="message" id="message" placeholder="Your Message"></textarea>
     <div>
       <label for="privacyConsent">
         <input
@@ -79,8 +79,9 @@
           required
         />
 
-        Accetto l'<a href="/privacypolicy" target="_blank" rel="noopener"
-          >informativa sulla privacy</a
+        I accept the
+        <a href="/privacypolicy" target="_blank" rel="noopener"
+          >privacy policy</a
         >.
       </label>
     </div>
@@ -90,18 +91,18 @@
       <button class="pushable" :disabled="!consentGiven">
         <span class="shadow"></span>
         <span class="edge"></span>
-        <span class="front"> Invia</span>
+        <span class="front"> Submit</span>
       </button>
     </div>
   </form>
-<div class="modal__text">
-<h2 class="subsection__header">Errore di invio del modulo</h2>
-<ul class="error__list">
-<% errors.forEach(function(error) { %>
-<li><%= error.msg %></li>
-<% }); %>
-</ul>
-</div>
+  <div class="modal__text">
+    <h2 class="subsection__header">Form Submission Error</h2>
+    <ul class="error__list">
+      <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
 </div>
 <div class="modal__close-svg">
   <svg

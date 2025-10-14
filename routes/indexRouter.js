@@ -7,7 +7,7 @@ indexRouter.get('/privacypolicy', indexController.privacyGet)
 indexRouter.get('/cookiepolicy', indexController.cookieGet)
 indexRouter.get('/en/privacypolicy', indexController.privacyEnGet)
 indexRouter.get('/en/cookiepolicy', indexController.cookieEnGet)
-indexRouter.get('/en', indexController.indexEnGet)
+// indexRouter.get('/en', indexController.indexEnGet)
 indexRouter.get('/', indexController.indexGet)
 
 module.exports = indexRouter

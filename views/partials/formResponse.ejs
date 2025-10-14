@@ -1,17 +1,16 @@
 <div x-data class="contact__modal-response">
-    <div>
-        <h4 class="section__header">Thank you for your message!</h4>
-        <p>I will get back to you as soon as possible.</p>
-         <button
-         hx-get="/webdev/form"
-         hx-target="#dialog"
-         hx-swap="outerHTML"
-          class="pushable"
-          @click="$refs.modal.close()">
-            <span class="shadow"></span>
-            <span class="edge"></span>
-            <span class="front">Close window</span>
-          </button>
-    </div>
+<div>
+<h4 class="section__header">Grazie per il tuo messaggio!</h4>
+<p>Ti risponderò il prima possibile.</p>
+<button
+hx-get="/webdev/form"
+hx-target="#dialog"
+hx-swap="outerHTML"
+class="pushable"
+@click="$refs.modal.close()">
+<span class="shadow"></span>
+<span class="edge"></span>
+<span class="front">Chiudi finestra</span>
+</button>
 </div>
-
+</div>
