@@ -41,6 +41,7 @@
   --color-accent-800: oklch(90% 0.08759 317.149);
 
   --hero-color-original: oklch(0.85 0.08 277.35);
+  --hero-color-changed: oklch(from var(--color-primary-400) calc(l) c h);
   --hero-color: oklch(0.85 0.08 277.35);
 
   --text-color: var(--color-neutral-100);
@@ -283,6 +284,7 @@
   --color-accent-800: oklch(28.136% 0.08759 317.149);
 
   --hero-color-original: oklch(0.23 0.08 277.35);
+  --hero-color-changed: oklch(from var(--color-primary-400) calc(l - 0.47) c h);
   --hero-color: oklch(0.23 0.08 277.35);
 
   --text-color: var(--color-neutral-100);
@@ -723,6 +725,16 @@ header {
 }
 
 @media (width < 1050px) {
+
+  .root{
+    --hero-color-original: oklch(0.85 0.08 277.35); ;
+    --hero-color-changed: oklch(0.85 0.08 277.35); ;
+  }
+
+  [data-theme="dark"]{
+     --hero-color-original: oklch(0.23 0.08 277.35); ;
+    --hero-color-changed:oklch(0.23 0.08 277.35); ;
+  }
   .menu {
     a {
       font-size: var(--size-400);
@@ -1672,7 +1684,7 @@ header {
   }
 
   .carousel__buttons-container {
-    margin-block-start: var(--size-900);
+    margin-block-start: -2rem;
   }
 }
 
@@ -1978,7 +1990,20 @@ header {
  
   }
   .prezzi__items {
-    height: 1300px;
+    
+    height: 1400px;
+  }
+
+  [data-theme="dark"] .prezzi__items{
+    background-image:linear-gradient(oklch(from var(--treetop-bottom) l c h / 0.9)), url("../Logo/verdescuro.svg"); 
+    background-repeat: no-repeat;
+    background-position: center bottom 200px;
+  }
+  [data-theme="light"] .prezzi__items{
+
+  background-image:linear-gradient(oklch(from var(--treetop-bottom) l c h / 0.9)), url("../Logo/violachiaro.svg"); 
+    background-repeat: no-repeat;
+    background-position: center bottom 200px;
   }
 
   .prezzi__buttons {
@@ -2196,6 +2221,12 @@ header {
 }
 
 @media (width < 600px) {
+
+  .contatti__details{
+    border-radius:10px;
+    padding-inline:var(--size-100);
+    background: oklch(from var(--color-neutral-900) l c h / 0.5);
+  }
 
   .faq{
     background-position: right bottom 125px;
