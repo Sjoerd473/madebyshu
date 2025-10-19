@@ -2598,11 +2598,18 @@ dialog {
   height: 50%;
 }
 
-.modal__portrait-svg {
+.modal__portrait-svg-en {
   position: fixed;
   width: 200px;
   bottom: 0;
   left: 50%;
+  transform: translateX(50%);
+}
+.modal__portrait-svg {
+  position: fixed;
+  width: 159px;
+  bottom: 0;
+  left: 55%;
   transform: translateX(50%);
 }
 
