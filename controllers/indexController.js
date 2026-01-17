@@ -22,24 +22,31 @@ cookieEnGet = async (req, res) => {
     res.render('cookiesEn', {title: 'Made by Shu - Cookies'})
 }
 
-loggerGet = async (req, res) => {
-    console.log("hello from logger")
-    const downloadsDir = path.join(__dirname, '..', "public", "Downloads", )
-    const files = fs.readdirSync(downloadsDir);
+loggerGet= async (req, res) => {
+    try {      
+        console.log("LOGGER ROUTE HIT");
 
-// Find the first file that starts with "logger"
-    const fileName = files.find(f => f.startsWith("logger"));
+        const downloadsDir = path.join(__dirname, '..', "public", "Downloads");
+        console.log("downloadsDir:", downloadsDir);
 
-    if (!fileName) {
-        return res.status(404).send("No logger file found");
+        const files = fs.readdirSync(downloadsDir);
+        console.log("files:", files);
+
+        const fileName = files.find(f => f.startsWith("logger"));
+        console.log("fileName:", fileName);
+
+        if (!fileName) {
+            return res.status(404).send("No logger file found");
+        }
+
+        const filePath = path.join(downloadsDir, fileName);
+        console.log("filePath:", filePath);
+
+        res.download(filePath, fileName);
+    } catch (err) {
+        console.error("LOGGER ERROR:", err);
+        res.status(500).send("Internal error");
     }
-
-    const filePath = path.join(downloadsDir, fileName);
-
-    console.log(filePath);
-    console.log(fileName);
-
-    res.download(filePath, fileName);
 };
 
 
