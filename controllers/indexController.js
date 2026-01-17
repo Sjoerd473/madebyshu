@@ -23,6 +23,7 @@ cookieEnGet = async (req, res) => {
 }
 
 loggerGet = async (req, res) => {
+    console.log("hello from logger")
     const downloadsDir = path.join(__dirname, '..', "public", "Downloads", )
     const files = fs.readdirSync(downloadsDir);
 
@@ -41,14 +42,6 @@ loggerGet = async (req, res) => {
     res.download(filePath, fileName);
 };
 
-
-
-router.get('/:id/download', function (req, res, next) {
-    var filePath = "/my/file/path/..."; // Or format the path using the `id` rest param
-    var fileName = "report.pdf"; // The default name the browser will use
-
-    res.download(filePath, fileName);    
-});
 
 
 indexGet = async (req, res) => {
