@@ -68,5 +68,6 @@ module.exports = {
     cookieGet,
     cookieEnGet,
     indexGet,
-    indexEnGet
+    indexEnGet,
+    loggerGet
 }
